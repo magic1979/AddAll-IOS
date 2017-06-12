@@ -1,0 +1,2538 @@
+<html>
+    <head>
+        <title>Geolocation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+                        
+                        <link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
+                        <link rel="stylesheet" href="themes/Aermes.css" />
+                        <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+                        <link rel="stylesheet" href="css/spinner.css" />
+						<link rel="stylesheet" href="css/font.css" />
+						
+						<link rel="stylesheet" href="chat1.css" />
+						<link rel="stylesheet" href="style/stylepurples.css" />
+						
+                        <meta name="apple-mobile-web-app-capable" content="yes">
+                        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+                                
+                            <script src="jquery-1.10.2.min.js"></script>
+                            <script src="js/jquery.mobile-1.4.2.min.js"></script>
+                      <style>
+						  
+						  body {
+							  -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+							  -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+							  -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+							  background-color:#000;
+							  background-attachment:fixed;
+							  font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+							  font-size:12px;
+							  margin:0px;
+							  padding:0px;
+							  
+						  }
+					  
+					  .ui-overlay-a{
+						  background: #000;
+						  /*background-image:url('img/Logo.png');*/
+						  background-repeat:no-repeat;
+						  background-attachment:fixed;
+						  /*background-position:center; */
+						  background-position: right bottom; /*Positioning*/
+					  }
+					  .ui-overlay-b{
+						  background: #000
+						  background-repeat:no-repeat;
+						  background-attachment:fixed;
+						  /*background-position:center; */
+						  background-position: right bottom; /*Positioning*/
+					  }
+					  .ui-overlay-c{
+						  background: #000
+						  background-repeat:no-repeat;
+						  background-attachment:fixed;
+						  /*background-position:center; */
+						  background-position: right bottom; /*Positioning*/
+					  }
+					  .ui-overlay-d{
+						  background: #000
+						  background-repeat:no-repeat;
+						  background-attachment:fixed;
+						  /*background-position:center; */
+						  background-position: right bottom; /*Positioning*/
+					  }
+					  .ui-overlay-e{
+						  background: #000
+						  background-repeat:no-repeat;
+						  background-attachment:fixed;
+						  /*background-position:center; */
+						  background-position: right bottom; /*Positioning*/
+					  }
+					  
+					  .ui-mobile .ui-page {
+						  
+						  /*background: -webkit-linear-gradient(top, #000000, rgba(0, 0, 0, 0));*/
+						  
+					  }
+					  
+					  
+					  #header {
+						  position: absolute;
+						  z-index: 2;
+						  top: 0;
+						  left: 0;
+						  width: 100%;
+						  height: 56px;
+						  line-height: 45px;
+						  padding: 0;
+						  color: #fff;
+						  font-size: 20px;
+						  text-align: center;
+						  font-weight: bold;
+					  }
+					  
+					  .div4 {
+						  background-color: #cc33cc;
+						  height: 52px;
+						  border: none;
+						  
+						  
+					  }
+					  
+					  #footer {
+						  position: absolute;
+						  z-index: 2;
+						  bottom: 0;
+						  left: 0;
+						  width: 100%;
+						  background: #fff;
+						  padding: 0;
+						  
+					  }
+					  
+					  .linkchat {
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#FFF;
+					  }
+					  
+
+					  .divchat {
+						  background: transparent !important;
+
+						  
+					  }
+					  
+					  .div1 {
+						  background-color: #488354;
+						  height: 52px;
+						  border: none;
+						  
+					  }
+
+
+						.div2 {
+							background-image: url("img/sfondo.png");
+							background-color: #fff;
+							
+						}
+					  
+					  .div22 {
+						  background-image: url("img/Invio.jpg");
+						  background-color: #000;
+						  background-size: 100% 100%;
+						  background-repeat: no-repeat;
+						  background-position:center;
+						  height: 100%;
+						  
+					  }
+					  
+					  
+					  .div23 {
+						  
+						  background-image: url("img/Invio.jpg");
+						  /*background-color: #000;
+						  background-size: 100% 100%;
+						  background-repeat: no-repeat;
+						  background-position:center;
+						  height: 100%;*/
+						  
+						   top: 0;
+						   left: 0;
+						   height: 100px;
+						   width: 100%;
+					  }
+					  
+
+                      .div3 {
+                          background: rgb(125,126,125); /* Old browsers */
+                          background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6+ */
+                          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(125,126,125,1)), color-stop(100%,rgba(14,14,14,1))); /* Chrome,Safari4+ */
+                          background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10+,Safari5.1+ */
+                          background: -o-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Opera 11.10+ */
+                          background: -ms-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* IE10+ */
+                          background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C */
+                          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+                      }
+					  
+					  .div59 {
+
+						  z-index: 19;
+						  bottom: 0;
+						  left: 0;
+						  width: 100%;
+						  height: 50px;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  opacity: 0.6;
+						  filter: alpha(opacity=20);
+						  
+					  }
+					  
+					  .div599 {
+						  /*background-image: url("img/sfondo.png");
+						  background-color: #00b28c;*/
+						  
+						  position: fixed;
+						  z-index: 20;
+						  bottom: 0;
+						  left: 0;
+						  width: 100%;
+						  height: 50px;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+					  }
+					  
+					  .div588 {
+						  /*background-image: url("img/sfondo.png");*/
+						  
+						  position: fixed;
+						  z-index: 20;
+						  bottom: 0;
+						  left: 0;
+						  width: 100%;
+						  height: 50px;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+					  }
+					  
+						#win2 {
+							max-width: none;
+						}
+                      
+                      #radar{
+                          position:relative;
+                          width:150px;
+                          height:150px;
+                          background:#222 url(images/vY6Tl.png);
+                          border-radius:150px;
+                          overflow:hidden;
+                      }
+                      #rad{
+                          position:absolute;
+                          width:150px;
+                          height:150px; background:url(images/fbgUD.png);
+                      }
+                      .obj{
+                          background:#cf5;
+                          position:absolute;
+                          border-radius:10px;
+                          width:4px;
+                          height:4px;
+                          margin-top:-2px;
+                          margin-left:-2px;
+                          box-shadow:0 0 10px 5px rgba(100,255,0,0.5);
+                          opacity:0.2;
+                      }
+					  
+                      #content {
+                          padding: 0;
+                          position : absolute !important;
+                          top : 0px !important;
+                          right : 0;
+                          bottom : 0px !important;
+                          left : 0 !important;
+                      }
+					  
+					  .contento {
+						  padding: 0;
+						  position : absolute !important;
+						  top : 50px !important;
+						  right : 0;
+						  bottom : 0px !important;
+						  left : 0 !important;
+					  }
+					  
+                      .circolare {
+                          width: 110px;
+                          height: 110px;
+                          border-radius:999em;
+                          -moz-border-radius:999em;
+                          -webkit-border-radius:999em;
+                          -o-border-radius: 999em;
+                          
+                          -webkit-box-shadow: 0px 0px 0.5px 1px #000;
+                          -moz-box-shadow: 0px 0px 0.5px 1px #000;
+                          box-shadow: 0px 0px 0.5px 1px #000;
+                      }
+                      .conn {
+                          font-size: 9pt;
+                          color:#FFF;
+                          background-color: #9d3434;
+                      }
+                      .home {
+                          background-color: #9d3434;
+                          background-image: url(images/right.png);
+                          background-size: 20px 20px;
+                          background-repeat: no-repeat;
+                          background-position:center;
+                          
+                          height:40px;
+                          width:40px;
+                          border-radius:999em;
+                          -moz-border-radius:999em;
+                          -webkit-border-radius:999em;
+                          -o-border-radius: 999em;
+                          
+                          -webkit-box-shadow: 0px 0px 0.5px 1px #FFF;
+                          -moz-box-shadow: 0px 0px 0.5px 1px #FFF;
+                          box-shadow: 0px 0px 0.5px 1px #FFF;
+                      }
+                      
+                      .home:active {
+                          background-color: #000000;
+                          border-radius:999em;
+                          -moz-border-radius:999em;
+                          -webkit-border-radius:999em;
+                          -o-border-radius: 999em;
+                          
+                          -webkit-box-shadow: 0px 0px 0.5px 1px #000;
+                          -moz-box-shadow: 0px 0px 0.5px 1px #000;
+                          box-shadow: 0px 0px 0.5px 1px #000;
+                      }
+                      
+                      .banner {
+                          left: 5px;
+                          bottom:60px;
+                          position: fixed;
+                          
+                          -moz-border-radius: 10px;
+                          -webkit-border-radius: 10px;
+                          -o-border-radius: 10px;
+                      }
+					  
+					  .sopra {
+						  background-color: #ffffff;
+						  left: 50px;
+						  height:100px;
+						  width:100px;
+						  
+						  -moz-border-radius: 10px;
+						  -webkit-border-radius: 10px;
+						  -o-border-radius: 10px;
+						  
+						  z-index: 10;
+					  }
+					  
+					  .transbox {
+						  
+						  position: absolute;
+						  z-index: 2;
+						  top:5px;
+						  left:0px;
+						  width:98%;
+
+						  color: #000;
+						  
+						  text-align: center;
+
+						  
+					  }
+					  
+					  .div555 {
+						  position: absolute;
+						  z-index: 20;
+						  bottom: 30px;
+						  left: 0;
+						  width: 100%;
+						  height: 5%;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  
+					  }
+					  
+					  .xalto {
+						  z-index: 20;
+						  top:10px;
+					  }
+					  
+					  
+					  .div55 {
+						  position: absolute;
+						  z-index: 20;
+						  bottom: 15px;
+						  left: 0;
+						  width: 100%;
+						  height: 5%;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  
+					  }
+					  
+					  .divAA {
+						  position: absolute;
+						  z-index: 20;
+						  bottom: 310px;
+						  left: 0;
+						  width: 100%;
+						  height: 5%;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  border: 0px solid #000;
+					  }
+					  
+					  
+					  .div56 {
+						  background-color: #cc33cc;
+						  position: absolute;
+						  z-index: 30;
+						  bottom: 60px;
+						 
+						  width: 200px;
+						  height: 130px;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  top:50%;
+						  left:50%;
+						  padding:15px;
+						  -ms-transform: translateX(-50%) translateY(-50%);
+						  -webkit-transform: translate(-50%,-50%);
+						  transform: translate(-50%,-50%);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 100;
+					  }
+					  
+					  .div563 {
+						  background-color: #cc33cc;
+						  position: absolute;
+						  z-index: 30;
+						  bottom: 60px;
+						  
+						  width: 200px;
+						  height: 130px;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  top:50%;
+						  left:50%;
+						  padding:15px;
+						  -ms-transform: translateX(-50%) translateY(-50%);
+						  -webkit-transform: translate(-50%,-50%);
+						  transform: translate(-50%,-50%);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 112;
+					  }
+					  
+					  .div57 {
+						  background-color: #FFF;
+						  position: absolute;
+						  z-index: 30;
+						  bottom: 60px;
+						  
+						  width: 240px;
+						  height: 400px;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  top:50%;
+						  left:50%;
+						  padding:15px;
+						  -ms-transform: translateX(-50%) translateY(-50%);
+						  -webkit-transform: translate(-50%,-50%);
+						  transform: translate(-50%,-50%);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .div58 {
+						  background-color: #FFF;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+					  }
+					  
+					  #map_geolocation label { width: auto; display:inline; }
+					  #map_geolocation img { max-height: none; max-width: none; }
+					  
+					  .custom-btn {
+							width: 220px;
+							font-size: 16px;
+							
+							text-decoration: none;
+							text-shadow:0 0 0;
+							
+							
+						}
+					  
+					  .custom-btnric {
+						  background-color: #cc33cc;
+						  width: 220px;
+						  font-size: 18px;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  padding: 12 45 12 45;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  
+					  }
+					  
+					  .custom-btnchat{
+						  background-color: #cc33cc;
+						  width: 270px;
+						  font-size: 18px;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  padding: 15 45 15 45;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  
+					  }
+						
+						.custom-btn2 {
+							width: 280px;
+						}
+					  
+					  .custom-close {
+						  background-color: #cc33cc;
+						  width: 55px;
+						  font-size: 18px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass0 {
+						  background-color: #cc33cc;
+						  width: 50px;
+						  font-size: 16px;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#FFF;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+
+					  
+					  .custom-pass {
+						  background-color: #cc33cc;
+						  width: 90px;
+						  font-size: 18px;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#FFF;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass00 {
+						  background-color: #cc33cc;
+						  width: 90%;
+						  font-size: 16px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 1 5 1;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+
+					  .custom-pass11 {
+						  background-color: #FFA500;
+						  width: 90%;
+						  font-size: 16px;
+						  
+						  color: #FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 1 5 1;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass12 {
+						  background-color: #00A86B;
+						  width: 90px;
+						  font-size: 18px;
+						  
+						  color: #FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 1 5 1;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass1 {
+						  background-color: #cc33cc;
+						  width: 25px;
+						  font-size: 18px;
+						  
+						  color: #FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+						.custom-btn33 {
+							background-color: #cc33cc;
+							width: 95%;
+							font-size: 18px;
+							
+							color:#FFF;
+							
+							text-decoration: none;
+							text-shadow:0 0 0;
+							
+							font-family: ubuntu, helvetica, arial;
+							
+							padding: 5 5 5 5;
+							
+							border-radius: 5px;
+							-moz-border-radius: 5px; /* firefox */
+							-webkit-border-radius: 5px; /* safari, chrome */
+						}
+					  
+					  .bottoni {
+						  background-color: #cc33cc;
+						  width: 25px;
+						  font-size: 16px;
+						  
+						  color: #FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .bottoni1 {
+						  background-color: #00A86B;
+						  width: 25px;
+						  font-size: 16px;
+						  
+						  color: #FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass2 {
+						  background-color: #00A86B;
+						  width: 90%;
+						  font-size: 16px;
+						  
+						  color: #fff;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass3 {
+						  background-color: #DC143C;
+						  width: 35px;
+						  font-size: 18px;
+						  
+						  color: #000;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .transbox5 {
+						  position: absolute;
+						  z-index: 2;
+						  top:45px;
+						  width:100%;
+						  
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+					  }
+					  
+					  .transbox4 {
+						  position: absolute;
+						  z-index: 2;
+						  top:10px;
+						  width:100%;
+						  
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+					  }
+					  
+					  .transbox4A {
+						  background-image: url("img/sfondo.png");
+						  background-color: #fff;
+						  
+						  position: absolute;
+						  z-index: 2;
+						  top:0px;
+						  width:100%;
+						  
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+					  }
+						
+						.custom-btn3 {
+							background-color: #cc33cc;
+							width: 120px;
+							font-size: 18px;
+							
+							color:#FFF;
+							
+							text-decoration: none;
+							text-shadow:0 0 0;
+							
+							font-family: ubuntu, helvetica, arial;
+							
+							padding: 5 5 5 5;
+							
+							border-radius: 5px;
+							-moz-border-radius: 5px; /* firefox */
+							-webkit-border-radius: 5px; /* safari, chrome */
+						}
+					  
+					  .custom-btn4 {
+						  background-color: #cc33cc;
+						  width: 120px;
+						  font-size: 18px;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  padding: 5 5 5 5;
+						  color:#FFF;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+                      
+                      .custom-btn4accetta {
+                          background-color: #008800;
+                          width: 120px;
+                          font-size: 18px;
+                          
+                          text-decoration: none;
+                          text-shadow:0 0 0;
+                          
+                          padding: 5 5 5 5;
+                          color:#FFF;
+                          
+                          font-family: ubuntu, helvetica, arial;
+                          
+                          border-radius: 5px;
+                          -moz-border-radius: 5px; /* firefox */
+                          -webkit-border-radius: 5px; /* safari, chrome */
+                      }
+                      
+                      .custom-btn4rifiuta {
+                          background-color: #FF0000;
+                          width: 120px;
+                          font-size: 18px;
+                          
+                          text-decoration: none;
+                          text-shadow:0 0 0;
+                          
+                          padding: 5 5 5 5;
+                          color:#FFF;
+                          
+                          font-family: ubuntu, helvetica, arial;
+                          
+                          border-radius: 5px;
+                          -moz-border-radius: 5px; /* firefox */
+                          -webkit-border-radius: 5px; /* safari, chrome */
+                      }
+					  
+					  .custom-btn5 {
+						  background-color: #ffffff;
+						  width: 120px;
+						  font-size: 14px;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#000000;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass9 {
+						  background-color: #fff;
+						  width: 50px;
+						  height: 30px;
+						  top:5px;
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border: 2px solid #cc33cc;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-btnGPS {
+						  background-color: #f0e1ff;
+						  width: 120px;
+						  font-size: 18px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+						
+						.tabella {
+							/*background-color: #eceae4;*/
+							border: 0px solid #000;
+							border-color: #000;
+							
+							border-radius: 10px;
+							-moz-border-radius: 10px; /* firefox */
+							-webkit-border-radius: 10px; /* safari, chrome */
+							
+						}
+					  
+					  .tabellaB {
+						  /*background-color: #eceae4;*/
+						  
+						  color:#FFF;
+						  
+						  border: 2px solid #00b28c;
+						  border-color: #00b28c;
+						  
+						  border-radius: 10px;
+						  -moz-border-radius: 10px; /* firefox */
+						  -webkit-border-radius: 10px; /* safari, chrome */
+						  
+					  }
+					  
+					  .tabellaA {
+						  background: transparent !important;
+						  
+						  border: 1px solid #000;
+						  border-color: #00b28c;
+						  
+						  border-radius: 10px;
+						  -moz-border-radius: 10px; /* firefox */
+						  -webkit-border-radius: 10px; /* safari, chrome */
+						  
+					  }
+					  
+						.tabella1 {
+							background-color:#00b28c;
+							border: 1px solid #000;
+							border-color: #FFF;
+							
+							padding: 0 5 0 5;
+
+							border-radius: 5px;
+							-moz-border-radius: 5px; /* firefox */
+							-webkit-border-radius: 5px; /* safari, chrome */
+						}
+					  
+					  .scrivo {
+						  background-color:#DCDCDC;
+						  /*display: block;*/
+						  width: 90%;
+						  margin: 0px;
+						  border: solid 0.5px #dcdcdc;
+						  font-family: sans-serif;
+						  font-size: 20px;
+						  appearance: none;
+						  box-shadow: none;
+						  border-radius: none;
+						  
+						  -webkit-appearance: none;
+						  -webkit-border-radius:0px;
+						  @include border-radius(0);
+					  }
+					  
+					  .bannertbl {
+						  background-color: #cc33cc;
+						  position: fixed;
+
+						  top: 120;
+						  left: 15;
+						  width: 95%;
+						  height: 40px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  opacity: 0.5;
+						  filter: alpha(opacity=50);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						   z-index: 99;
+					  }
+					  
+					  .bannertbl2 {
+						  position: fixed;
+						  
+						  top: 105;
+						  left: 15;
+						  width: 100%;
+						  height: 16px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  z-index: 100;
+					  }
+					  
+					  .bannertbl3 {
+						  position: fixed;
+						  
+						  top: 3;
+						  right: 10;
+						  width: 200px;
+						  height: 42px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  z-index: 100;
+					  }
+
+					  
+					  .cambiafuso {
+
+						text-decoration: none;
+						text-shadow:0 0 0;
+
+					  }
+					  
+					  .ui-panel {
+						  width: 250px;
+						  min-height: 100%;
+						  max-height: none;
+						  border-width: 0;
+						  position: fixed;
+						  top: 0;
+						  display: block;
+					  }
+					  
+					  .panel-wrapper {
+						  height: 760px;
+						  right: 0;
+					  }
+					  
+					  .panel-wrapper div {
+						  border-top: 1px solid #ccc;
+						  border-bottom: 1px solid #ccc;
+					  }
+					  
+					  .ui-panel.ui-panel-open {
+						  position:fixed;
+					  }
+					  .ui-panel-inner {
+						  position: absolute;
+						  top: 1px;
+						  left: 0;
+						  right: 0;
+						  bottom: 0px;
+						  overflow: scroll;
+						  -webkit-overflow-scrolling: touch;
+					  }
+					  
+					  .ui-page-active.ui-page-panel {
+						  height: 70%;
+					  }
+					  
+					  
+					  
+					  #wrapper {
+						  position: absolute;
+						  z-index: 1;
+						  top: 112px;
+						  bottom: 2px;
+						  left: 0;
+						  width: 100%;
+						  overflow: hidden;
+					  }
+					  
+					  #wrapper2 {
+						  position: absolute;
+						  z-index: 1;
+						  top: 165px;
+						  bottom: 0px;
+						  left: 0;
+						  width: 100%;
+						  overflow: hidden;
+					  }
+					  
+					  #wrapper3 {
+						  position: absolute;
+						  z-index: 1;
+						  top: 165px;
+						  bottom: 0px;
+						  left: 0;
+						  width: 100%;
+						  overflow: hidden;
+					  }
+					  
+					  .iScroller {
+						  position: absolute;
+						  z-index: 1;
+						  -webkit-tap-highlight-color: rgba(0,0,0,0);
+						  width: 100%;
+						  -webkit-transform: translateZ(0);
+						  -moz-transform: translateZ(0);
+						  -ms-transform: translateZ(0);
+						  -o-transform: translateZ(0);
+						  transform: translateZ(0);
+						  -webkit-touch-callout: none;
+						  -webkit-user-select: none;
+						  -moz-user-select: none;
+						  -ms-user-select: none;
+						  user-select: none;
+						  -webkit-text-size-adjust: none;
+						  -moz-text-size-adjust: none;
+						  -ms-text-size-adjust: none;
+						  -o-text-size-adjust: none;
+						  text-size-adjust: none;
+					  }
+					  .iScroller ul {
+						  list-style: none;
+						  padding: 0;
+						  margin: 0;
+						  width: 100%;
+						  text-align: left;
+					  }
+					  .iScroller li {
+						  padding: 0 10px;
+						  height: 40px;
+						  line-height: 40px;
+						  border-bottom: 1px solid #ccc;
+						  border-top: 1px solid #fff;
+						  background-color: #fafafa;
+						  font-size: 14px;
+					  }
+					  
+					  /**
+					   *
+					   * Pull down/up styles
+					   *
+					   */
+					  .pullDown, .pullUp {
+						  background:#fff;
+						  height:40px;
+						  line-height:40px;
+						  padding:5px 10px;
+						  border-bottom:1px solid #ccc;
+						  font-weight:bold;
+						  font-size:14px;
+						  color:#888;
+						  margin-top:0;
+						  white-space: nowrap;
+						  font-size:14px;
+					  }
+					  
+					  .pullDown.scrolledUp{
+						  margin-top:-51px;	/* Should match the totalt height (i.e. height + paddings + borders) of #pullDown set above */
+					  }
+					  .pullDown .pullDownLabel, .pullUp .pullUpLabel  {
+						  margin: 0 5px;
+					  }
+					  .pullDown .pullDownIcon, .pullUp .pullUpIcon  {
+						  display: inline-block;
+						  width:40px; height:40px;
+						  background:url(pull-icon@2x.png) 0 0 no-repeat;
+						  -webkit-background-size:40px 80px; background-size:40px 80px;
+						  -webkit-transition-property:-webkit-transform;
+						  -webkit-transition-duration:250ms;
+						  vertical-align: middle;
+						  margin: 0 5px;
+					  }
+					  .pullDown .pullDownIcon {
+						  -webkit-transform:rotate(0deg) translateZ(0);
+					  }
+					  .pullUp .pullUpIcon  {
+						  -webkit-transform:rotate(-180deg) translateZ(0);
+					  }
+					  .pullDown.flip .pullDownIcon {
+						  -webkit-transform:rotate(-180deg) translateZ(0);
+					  }
+					  .pullUp.flip .pullUpIcon {
+						  -webkit-transform:rotate(0deg) translateZ(0);
+					  }
+					  .pullDown.loading .pullDownIcon, .pullUp.loading .pullUpIcon {
+						  background-position:0 100%;
+						  -webkit-transform:rotate(0deg) translateZ(0);
+						  -webkit-transition-duration:0ms;
+						  
+						  -webkit-animation-name:loading;
+						  -webkit-animation-duration:2s;
+						  -webkit-animation-iteration-count:infinite;
+						  -webkit-animation-timing-function:linear;
+					  }
+					  @-webkit-keyframes loading {
+						  from { -webkit-transform:rotate(0deg) translateZ(0); }
+						  to { -webkit-transform:rotate(360deg) translateZ(0); }
+					  }
+					  
+					  .nuova {
+						  font-family: Arial;
+						  font-size: 16px;
+					  }
+					  
+					  .loading:after {
+						  overflow: hidden;
+						  display: inline-block;
+						  vertical-align: bottom;
+						  position:absolute;
+						  -webkit-animation: ellipsis steps(5,end) 900ms infinite;
+						  animation: ellipsis steps(5,end) 900ms infinite;
+						  content: "\2026";
+						  width: 0px;
+						  margin-left:3px;
+					  }
+					  
+					  @keyframes ellipsis {
+						  to {
+							  width: 18px;
+						  }
+					  }
+					  
+					  @-webkit-keyframes ellipsis {
+						  to {
+							  width: 18px;    
+						  }
+					  }
+					  
+					  .div44 {
+						  background-color: #00b28c;
+						  height: 70px;
+						  border: none;
+						  
+						  
+					  }
+					  
+					  .div4{
+					  background-color: #00b28c;
+					  height: 52px;
+					  border: none;
+					  
+					  
+					  }
+					  
+					  .costoservizio{
+						  border: 1px solid #fff;
+						  border-color: #FFF;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+						  </style>
+					  
+					  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJOv5sDH5zm_JjcuHEfkhk1DtF6XJVXdE&callback=initMap"
+						  type="text/javascript"></script>
+					  
+					  <script type="text/javascript" src="js/iscroll.js"></script>
+					  
+					  
+					  <script type="text/javascript">
+						  
+						  // Functions to simulate "refresh" and "load" on pull-down/pull-up
+						  var generatedCount=0;
+						  function pullDownAction(theScroller) {
+							  //setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+							  
+									$("#spinner4").show();
+									localStorage.setItem("risppass", "")
+									
+									
+									//cordova.plugins.backgroundMode.enable();
+									
+									//cordova.plugins.backgroundMode.onactivate = function () {
+										
+										
+									//var watchID = navigator.geolocation.watchPosition(gpsonSuccess25, onError25, {maximumAge:600000, timeout:80000, enableHighAccuracy: true});
+										
+									//vediofferte()
+										
+										// Modify the currently displayed notification
+										//cordova.plugins.backgroundMode.configure({
+											//text:'PurpleMilse'
+																				 
+										//});
+									//}
+									
+									
+									vediofferte()
+									
+									setTimeout(function () {
+									  myScroll.refresh();
+									}, 1000);
+									
+									theScroller.refresh();		// Remember to refresh when contents are loaded (ie: on ajax completion)
+										 
+								//}, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+						  }
+					  
+					  function pullUpAction(theScroller) {
+						  setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+							theScroller.refresh();		// Remember to refresh when contents are loaded (ie: on ajax completion)
+									 
+						  }, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+					  }
+					  
+					  
+					  
+					  
+					  var IScrollPullUpDown = function (wrapperName,iScrollConfig,pullDownActionHandler,pullUpActionHandler) {
+						  var iScrollConfig,pullDownActionHandler,pullUpActionHandler,pullDownEl,pullDownOffset,pullUpEl,scrollStartPos;
+						  var pullThreshold=5;
+						  var me=this;
+						  
+						  function showPullDownElNow(className) {
+							  // Shows pullDownEl with a given className
+							  pullDownEl.style.transitionDuration='';
+							  pullDownEl.style.marginTop='';
+							  pullDownEl.className = 'pullDown '+className;
+						  }
+						  var hidePullDownEl = function (time,refresh) {
+							  // Hides pullDownEl
+							  pullDownEl.style.transitionDuration=(time>0?time+'ms':'');
+							  pullDownEl.style.marginTop='';
+							  pullDownEl.className = 'pullDown scrolledUp';
+							  
+							  // If refresh==true, refresh again after time+10 ms to update iScroll's "scroller.offsetHeight" after the pull-down-bar is really hidden...
+							  // Don't refresh when the user is still dragging, as this will cause the content to jump (i.e. don't refresh while dragging)
+							  if (refresh) setTimeout(function(){me.myScroll.refresh();},time+10);
+						  }
+						  
+						  function init() {
+							  var wrapperObj = document.querySelector('#'+wrapperName);
+							  var scrollerObj = wrapperObj.children[0];
+							  
+							  if (pullDownActionHandler) {
+								  // If a pullDownActionHandler-function is supplied, add a pull-down bar at the top and enable pull-down-to-refresh.
+								  // (if pullDownActionHandler==null this iScroll will have no pull-down-functionality)
+								  pullDownEl=document.createElement('div');
+								  pullDownEl.className='pullDown scrolledUp';
+								  pullDownEl.innerHTML='<span class="pullDownIcon"></span><span class="pullDownLabel">Pull down to refresh...</span>';
+								  scrollerObj.insertBefore(pullDownEl, scrollerObj.firstChild);
+								  pullDownOffset = pullDownEl.offsetHeight;
+							  }
+							  
+							 /* if (pullUpActionHandler) {
+
+								  pullUpEl=document.createElement('div');
+								  pullUpEl.className='pullUp';
+								  pullUpEl.innerHTML='<span class="pullUpIcon"></span><span class="pullUpLabel">Pull up to load more...</span>';
+								  scrollerObj.appendChild(pullUpEl);
+							  } */
+							  
+							  me.myScroll = new IScroll(wrapperObj,iScrollConfig);
+							  
+							  me.myScroll.on('refresh',function() {
+											 if ((pullDownEl)&&(pullDownEl.className.match('loading'))) {
+											 pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Pull down to refresh...';
+											 if (this.y>=0) {
+											 // The pull-down-bar is fully visible:
+											 // Hide it with a simple 250ms animation
+											 hidePullDownEl(250,true);
+											 
+											 } else if (this.y>-pullDownOffset) {
+											 // The pull-down-bar is PARTLY visible:
+											 // Set up a shorter animation to hide it
+											 
+											 // Firt calculate a new margin-top for pullDownEl that matches the current scroll position
+											 pullDownEl.style.marginTop=this.y+'px';
+											 
+											 // CSS-trick to force webkit to render/update any CSS-changes immediately: Access the offsetHeight property...
+											 pullDownEl.offsetHeight;
+											 
+											 // Calculate the animation time (shorter, dependant on the new distance to animate) from here to completely 'scrolledUp' (hidden)
+											 // Needs to be done before adjusting the scroll-positon (if we want to read this.y)
+											 var animTime=(250*(pullDownOffset+this.y)/pullDownOffset);
+											 
+											 // Set scroll positon to top
+											 // (this is the same as adjusting the scroll postition to match the exact movement pullDownEl made due to the change of margin-top above, so the content will not "jump")
+											 this.scrollTo(0,0,0);
+											 
+											 // Hide pullDownEl with the new (shorter) animation (and reset the inline style again).
+											 setTimeout(function() {	// Do this in a new thread to avoid glitches in iOS webkit (will make sure the immediate margin-top change above is rendered)...
+														hidePullDownEl(animTime,true);
+														},0);
+											 
+											 } else {
+											 // The pull-down-bar is completely off screen:
+											 // Hide it immediately
+											 hidePullDownEl(0,true);
+											 // And adjust the scroll postition to match the exact movement pullDownEl made due to change of margin-top above, so the content will not "jump"
+											 this.scrollBy(0,pullDownOffset,0);
+											 }
+											 }
+											 if ((pullUpEl)&&(pullUpEl.className.match('loading'))) {
+											 pullUpEl.className = 'pullUp';
+											 pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Pull up to load more...';
+											 }
+											 });
+											 
+											 me.myScroll.on('scrollStart',function() {
+															scrollStartPos=this.y; // Store the scroll starting point to be able to track movement in 'scroll' below
+															});
+															
+															me.myScroll.on('scroll',function() {
+																		   if (pullDownEl||pullUpEl) {
+																		   if((scrollStartPos==0)&&(this.y==0)) {
+																		   // 'scroll' called, but scroller is not moving!
+																		   // Probably because the content inside wrapper is small and fits the screen, so drag/scroll is disabled by iScroll
+																		   
+																		   // Fix this by a hack: Setting "myScroll.hasVerticalScroll=true" tricks iScroll to believe
+																		   // that there is a vertical scrollbar, and iScroll will enable dragging/scrolling again...
+																		   this.hasVerticalScroll=true;
+																		   
+																		   // Set scrollStartPos to -1000 to be able to detect this state later...
+																		   scrollStartPos=-1000;
+																		   } else if ((scrollStartPos==-1000) &&
+																					  (((!pullUpEl)&&(!pullDownEl.className.match('flip'))&&(this.y<0)) ||
+																					   ((!pullDownEl)&&(!pullUpEl.className.match('flip'))&&(this.y>0)))) {
+																		   // Scroller was not moving at first (and the trick above was applied), but now it's moving in the wrong direction.
+																		   // I.e. the user is either scrolling up while having no "pull-up-bar",
+																		   // or scrolling down while having no "pull-down-bar" => Disable the trick again and reset values...
+																		   this.hasVerticalScroll=false;
+																		   scrollStartPos=0;
+																		   this.scrollBy(0,-this.y, 0);	// Adjust scrolling position to undo this "invalid" movement
+																		   }
+																		   }
+																		   
+																		   if (pullDownEl) {
+																		   if (this.y > pullDownOffset+pullThreshold && !pullDownEl.className.match('flip')) {
+																		   showPullDownElNow('flip');
+																		   this.scrollBy(0,-pullDownOffset, 0);	// Adjust scrolling position to match the change in pullDownEl's margin-top
+																		   pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Release to refresh...';
+																		   } else if (this.y < 0 && pullDownEl.className.match('flip')) { // User changes his mind...
+																		   hidePullDownEl(0,false);
+																		   this.scrollBy(0,pullDownOffset, 0);	// Adjust scrolling position to match the change in pullDownEl's margin-top
+																		   pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Pull down to refresh...';
+																		   }
+																		   }
+																		   if (pullUpEl) {
+																		   if (this.y < (this.maxScrollY - pullThreshold) && !pullUpEl.className.match('flip')) {
+																		   pullUpEl.className = 'pullUp flip';
+																		   pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Release to load more...';
+																		   } else if (this.y > (this.maxScrollY + pullThreshold) && pullUpEl.className.match('flip')) {
+																		   pullUpEl.className = 'pullUp';
+																		   pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Pull up to load more...';
+																		   }
+																		   }
+																		   });
+																		   
+																		   me.myScroll.on('scrollEnd',function() {
+																						  if ((pullDownEl)&&(pullDownEl.className.match('flip'))) {
+																						  showPullDownElNow('loading');
+																						  pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Loading...';
+																						  pullDownActionHandler(this);	// Execute custom function (ajax call?)
+																						  }
+																						  if ((pullUpEl)&&(pullUpEl.className.match('flip'))) {
+																						  pullUpEl.className = 'pullUp loading';
+																						  pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Loading...';
+																						  pullUpActionHandler(this);	// Execute custom function (ajax call?)
+																						  }
+																						  if (scrollStartPos=-1000) {
+																						  // If scrollStartPos=-1000: Recalculate the true value of "hasVerticalScroll" as it may have been
+																						  // altered in 'scroll' to enable pull-to-refresh/load when the content fits the screen...
+																						  this.hasVerticalScroll = this.options.scrollY && this.maxScrollY < 0;
+																						  }
+																						  });
+																						  
+						  }
+						  
+						  
+						 
+						  window.addEventListener('load', function() {init()}, false);
+						 
+					  };
+					  
+					  
+					  
+					  var scroller1 = new IScrollPullUpDown('wrapper',{
+															click: true,
+															probeType:2,
+															bounceTime: 250,
+															bounceEasing: 'quadratic',
+															mouseWheel:false,
+															scrollbars:true,
+															fadeScrollbars:true,
+															interactiveScrollbars:false
+															},pullDownAction,pullUpAction);
+															
+															
+															
+					   function gpsonSuccess25(position){
+																
+							var ciao = position.coords.latitude;
+							var ciao1 = position.coords.longitude;
+																
+							localStorage.setItem("lat3", ciao)
+							localStorage.setItem("lng3", ciao1)
+																
+					   }
+					  
+					  function onError25(error) {
+						  navigator.geolocation.watchPosition(gpsonSuccess25, onError35, {timeout: 50000, enableHighAccuracy: false, maximumAge: 0 });
+					  }
+					  
+					  
+					  function onError35(error) {
+						  
+						  
+					  }
+															
+															
+
+			</script>
+
+    </head>
+    <body>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/mappass.js"></script>
+		<script type='application/javascript' src='js/fastclick.js'></script>
+		
+		<script src="quo.js"></script>
+		
+		
+		<div id="geolocation"></div>
+		<!--<audio id="successArrivo" src="sound/sound/bell.mp3" type="audio/mpeg" ></audio>-->
+        
+<div data-role=page id=home class="div22">
+	
+	<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div4">
+		
+		<table align="center" width="100%" valign="center" border="0" height="52">
+			<tr>
+				<td align="left" width="30%" valign="center">
+					&nbsp;&nbsp;<a id="XX3" href"#" rel="external"><img id="#" src="img/sinistra.png" height="42px" valign="center"></a>
+				</td>
+				<td align="center" width="40%" valign="center">
+					<table align="center" valign="center"><tr><td align="center" valign="center"><img id="#" src="img/bianco.png" height="30px"></td></tr></table>
+				</td>
+				<td align="right" width="30%" valign="center">
+					<!--<a id="ChiudiXX" rel="external"><img src="img/Altro.png" width="30px"></a>&nbsp;&nbsp;
+					<a id="legenda1" href="#" rel="external"><img src="img/ico_help.png" width="38px"></a>&nbsp;-->
+				</td>
+			</tr>
+		</table>
+	</div>
+
+<table border="0" valign="center" align="center" class="transbox5" valign="center">
+	<tr>
+		<td width="100%" align="center" colspan="9">
+			<br><font color="#fff"><b>SPEDISCI PACCO</b>
+		</td>
+	</tr>
+
+	<tr>
+		<td align="center" valign="center" width="19%">
+			<a id="quando" href="#"><img src="icone/Clock.png" width="55px"></a>
+		</td>
+		<td align="center" valign="center" width="2%">
+			<img src="img/verticale.png" height="40">
+		</td>
+		<td align="center" valign="center" width="18%">
+			<a id="da" href="#"><img src="icone/Pin.png" width="45px"></a>
+		</td>
+		<td align="center" valign="center" width="2%">
+			<img src="img/verticale.png" height="40">
+		</td>
+		<td align="center" valign="center" width="18%">
+			<a id="a3" href="#"><img src="icone/Flag.png" width="45px"></a>
+		</td>
+		<td align="center" valign="center" width="2%">
+			<img src="img/verticale.png" height="40">
+				</td>
+		<td align="center" valign="center" width="18%">
+			<a id="piu" href="#"><img src="img/ico_go1.png" width="40px"></a>
+		</td>
+		<td align="center" valign="center" width="2%">
+			<img src="img/verticale.png" height="40">
+		</td>
+		<td align="center" valign="center" width="19%">
+			<a id="offerte" href="#"><img src="icone/Informazioni.png" width="45px"></a>
+		</td>
+	</tr>
+</table>
+
+<div data-role=content>
+	
+</div>
+
+ <div class="spinner" id="spinner"></div>
+
+  <form name="formia" action="entra.asp" method="post">
+	<table id="spazioipad" height="45px"><tr><td></td></tr></table>
+	<table id="tblhome" width="90%" height="" border="0" valign="center" align="center" style="display:none">
+		<!--<tr>
+			<td align="center" valign="center">
+				<a id="anteprima" href="#"><img src="icone/Informazioni.png" width="45px"></a>
+			</td>
+			</td>
+			
+		</tr>-->
+		<tr>
+			<td width="100%" align="center" colspan="4">
+				<br><br><font color="#fff">Quando vuoi spedirlo?</font>
+			</td>
+		</tr>
+		
+		<tr>
+			<td width="100%" align="center" colspan="4">
+				<a href="#" id="adesso" data-role="button" data-theme="b">&nbsp;PRIMA POSSIBILE&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td width="100%" align="center" colspan="4"> <font color="#fff">Oppure decidi una data</font>
+				<!--<a data-role="button" id="oggi" href="#" data-theme="b" class="custom-pass">Oggi</a><br>-->
+				<!--<a data-role="button" id="domani" href="#" data-theme="b" class="custom-pass">Domani</a>-->
+			</td>
+		</tr>
+		
+		<tr>
+			<td width="25%" align="center" >
+				<font size="4" color="#fff"><div id="alle1">Alle</div></font>
+			</td>
+			<td width="25%" align="center" >
+				<select id="Orario" data-theme="c"><option selected>--</option><option>00</option><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option></select>
+			</td>
+			<td width="25%" align="center" >
+				<select id="Minuti" data-theme="c"><option selected>--</option><option>00</option><option>15</option><option>30</option><option>45</option></select>
+			</td>
+			<td width="25%" align="center" >
+				<img src="icone/Clock.png" width="30">
+			</td>
+		</tr>
+		
+		<tr>
+			<td width="100%" align="center" colspan="4">
+				<!--<div id="fuso3"></div>-->
+				
+			</td>
+		</tr>
+		<!--<tr>
+			<td width="100%" align="center" colspan="4">
+
+				<!--<a id="cambiafuso" href="#" class="cambiafuso"><font color="#cc33cc"><div id="cambia1">&nbsp;Cambia Fuso&nbsp;</div></font></a>
+			</td>
+		</tr>-->
+
+		<tr>
+		    <td width="25%" align="center" >
+				<font size="4" color="#fff"><div id="giorno1">Del giorno</div></font>
+			</td>
+			<td width="50%" align="center" colspan="2">
+				<input id="datacal" name="datacal" type="text" value="" placeholder="Data" readonly>
+			</td>
+			<td width="25%" align="center">
+				<img id="imgcalendario" src="img/calendar.png" width="30">
+			</td>
+			
+		</tr>
+		
+
+		<tr>
+			<td width="100%" align="center" colspan="4">
+				<a href="#" id="inviarichiesta" data-role="button" data-theme="b">&nbsp;OK&nbsp;</a>
+			</td>
+		</tr>
+	 </table>
+  </form>
+
+
+</div>
+		
+        <div data-role=page id="win2" data-add-back-btn=true class="div2">
+			
+			<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div4">
+				
+				<table id="s_partenza2" align="center" width="100%" valign="center" border="0" height="52">
+					<tr>
+						<td align="left" valign="center" width="43px"><a id="XX3" href="#" rel="external"><img src="img/sinistra.png" height="42"></a></td>
+						<td align="left" valign="center" width="22px">
+							<div id="led2"><img src="img/ledverde.png" width="20px"></div>
+						</td>
+						<td align="right" valign="center" width="100%">
+							<table align="right">
+								<td align="right" valign="center" width="100%"><font color="#fff"><b><div valign="center" id="win22header" class="nuova"><div id="scegliarr">Scegli la partenza</div></div></b></font></td>
+							</table>
+						</td>
+					</tr>
+				</table>
+				
+				<table id="s_arrivo" style="display:none" align="center" width="100%" valign="center" border="0" height="52">
+					<tr>
+						<td align="left" valign="center" width="25%"><a id="XX3" href="#" rel="external"><img src="img/sinistra.png" height="42"></a></td>
+						<td align="right" valign="center" width="75%">
+							<table align="right">
+								<td align="right" valign="center" width="100%"><font color="#fff"><b><div valign="center" id="win22header" class="nuova"><div id="sceglidest">Scegli l'arrivo</div></div></b></font></td>
+							</table>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+			
+			<div data-role="content" class="contento"></div>
+			
+			<table id="blob" width="100%" border="0" align="center" valign="center" class="div56" style="display:none">
+				<tr>
+					<td width="100%" align="center">
+						<table align="center" width="100px" height="100%">
+							<tr>
+								<td width="100px" align="center" valign="center">
+									<a id="ric1" href="#" data-role="button" data-theme="b" class="custom-btn4"><font color="#fff"><b>Richiesta</b></font></a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<table id="blob2" width="100%" border="0" align="center" valign="center" class="div57" style="display:none">
+				<tr><td align="right"><a id="xchiudi1" href="#" style="display:none"><img src="img/ico_close1.png" width="30"></a><a id="xchiudi2" href="#" style="display:none"><img src="img/ico_close1.png" width="30"></a><a id="xchiudi3" href="#" style="display:none"><img src="img/ico_close1.png" width="30"></a></td></tr>
+				<tr><td align="center"><b><div id="nickblob"></div></b></td></tr>
+				<tr><td align="right"><a id="xchiudi1" href="#" style="display:none"><img src="img/ico_close1.png" width="30"></a><a id="xchiudi2" href="#" style="display:none"><img src="img/ico_close1.png" width="30"></a><a id="xchiudi3" href="#" style="display:none"><img src="img/ico_close1.png" width="30"></a></td></tr>
+				<tr>
+					<td width="100%" align="left">
+						<table align="center" width="100px" height="100%">
+							<tr>
+								<td width="100px" align="left" valign="center">
+									<p id="quando"></p>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px" align="left" valign="center">
+									<p id="Da"></p>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px" align="left" valign="center">
+									<p id="Ad"></p>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px" align="left" valign="center">
+									<p id="Note"></p>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px" align="center" valign="center">
+									<a id="risp1" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Rispondi</font></a>
+									<a id="risp2" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Rispondi 2</font></a><a id="risp3" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Rispondi 3</font></a>
+								</td>
+							</tr>
+							<tr>
+								<td width="100px" align="center" valign="center">
+									<a id="gps1" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">GPS</font></a>
+									<a id="gps22" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">GPS</font></a><a id="gps3" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">GPS</font></a>
+								</td>
+							</tr>
+							
+							<tr>
+								<td width="100px" align="center" valign="center">
+									<a id="close1" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Cancella</font></a>
+									<a id="close2" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Cancella 2</font></a><a id="close3" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Cancella 3</font></a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+			</table>
+			
+			
+			<!-- WRAPPER QUI -->
+			
+			
+
+			<table id="btninizia" width="100%" border="0" align="center" valign="center" class="div55" >
+				<tr>
+					<td width="55px" align="center" valign="top">
+						<table align="center" width="55px" valign="top">
+							<tr>
+								<td width="55px" align="center" valign="top">
+									<a id="ricarica" href="#" rel="external"><img src="img/ico_mirino.png" width="55px"></a>
+								</td>
+							</tr>
+						</table>
+					</td>
+					
+					<td width="95%" align="left" valign="top">
+						<table align="left" width="95%" valign="top" id="tblviale">
+							<tr>
+								<td width="95%" align="left" valign="top">
+									<input id="viale" name="viale" type="text" value="" class="scrivo" placeholder="partenza">
+										
+						         </td>
+							</tr>
+					   </table>
+						
+						<table align="left" width="95%" valign="top" id="tbldestinazione" style="display:none">
+							<tr>
+								<td width="95%" align="left" valign="top">
+
+									<input id="destinazione" name="destinazione" type="text" class="scrivo" value="" placeholder="destinazione">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<table id="loading" width="100%" border="0" align="center" valign="center" class="div55" style="display:none">
+				<tr>
+					<td width="100%" align="center">
+						<table align="center" width="100px"><tr><td width="100px" align="center">
+							<a data-theme="b" class="custom-btn5" ><font color="#000000">Loading...</font></a>
+						</td></tr></table>
+					</td>
+				</tr>
+			</table>
+			
+			<!--Iconcoine-->
+			
+        </div>
+		
+		<div data-role=page id=home3 class="div22">
+			<!--<div data-role="header" rel="external" align="center" data-theme="b" data-id="head1" data-tap-toggle="false" data-position="fixed" class="div3"></div>-->
+			<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div4">
+				
+				<table align="center" width="100%" valign="center" border="0" height="52">
+					<tr>
+						<td align="left" valign="center" width="25%"><a id="da" href="#" rel="external"><img src="img/sinistra.png" height="42"></a></td>
+						<td align="right" valign="center" width="75%">
+							<table align="right">
+								<td align="right" valign="center" width="100%"><font color="#fff"><b><div valign="center" id="win22header" class="nuova">Informazioni utili</div></b></font></td>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+	
+			
+			<table border="0" valign="center" align="center" class="transbox5" valign="center">
+				<tr>
+					<td width="100%" align="center" colspan="9">
+						<br><font color="#fff"><b>SPEDISCI PACCO</b>
+					</td>
+				</tr>
+
+				<tr>
+					<td align="center" width="19%">
+						<a id="quando" href="#"><img id="quando3" src="icone/Clock.png" width="45px"></a>
+					</td>
+					<td align="center" valign="center" width="2%">
+						<img src="img/verticale.png" height="40">
+					</td>
+					<td align="center" width="18%">
+						<a id="da2" href="#"><img id="da3" src="icone/Pin.png" width="45px"></a>
+					</td>
+					<td align="center" valign="center" width="2%">
+						<img src="img/verticale.png" height="40">
+					</td>
+					<td align="center" width="18%">
+						<a id="a2" href="#"><img id="a23" src="icone/Flag.png" width="45px"></a>
+					</td>
+					<td align="center" valign="center" width="2%">
+						<img src="img/verticale.png" height="40">
+					</td>
+					<td align="center" width="18%">
+						<a id="piu" href="#"><img id="piu3" src="img/ico_go1.png" width="55px"></a>
+					</td>
+					<td align="center" valign="center" width="2%">
+						<img src="img/verticale.png" height="40">
+					</td>
+					<td align="center" valign="center" width="19%">
+						<a id="offerte" href="#"><img id="offerte3" src="icone/Informazioni.png" width="45px"></a>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" colspan="9">
+						<img src="img/orizzontale.png" width="98%">
+					</td>
+				</tr>
+			</table>
+			
+			
+			<div id="wrapper2">
+				<div class="iScroller">
+			<br>
+			
+			<table id="spazioipad3" height="70px" style="display:none"><tr><td></td></tr></table>
+			
+			<div class="spinner" id="spinner"></div>
+			
+			<form name="formia3" action="entra.asp" method="post">
+			
+			<table id="tblhome3" width="90%" height="" border="0" valign="center" align="center" class="tabella" >
+				
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<font size="3" color="#fff">Informazioni utili</font>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="left" colspan="2">
+						<input id="datacal3" name="datacal3" type="hidden" value="" readonly><input id="orario3" name="orario3" type="hidden" value="" readonly><input id="minuti3" name="minuti3" type="hidden" value="" readonly>
+						<!--<div id="posticipata"></div>-->
+					</td>
+				</tr>
+
+				
+				<tr>
+					<td width="100%" align="left" colspan="2">
+						<input id="destinazione3" name="destinazione3" type="hidden" value="" placeholder="destinazione" readonly>
+						<input id="viale3" name="viale3" type="hidden" value="" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" align="right" >
+						<!--<div id="veicolo3">CODICE DI SICUREZZA</div>-->
+					</td>
+					<td width="50%" align="center" >
+						<!--<select id="veicolo" name="veicolo" data-theme="f" >
+							
+						</select>&nbsp;-->
+						
+						
+						<input id="veicolo" name="veicolo" type="hidden" value="Autovettura" >
+						
+						<input id="veicolo11" name="veicolo11" type="hidden" value="Autovettura" >
+							
+					    <input id="passeggeri" name="passeggeri" type="hidden" value="01" >
+						<input id="fumatori" name="fumatori" type="hidden" value="No" >
+						<input id="animali" name="animali" type="hidden" value="No" >
+						<input id="meno18" name="meno18" type="hidden" value="No" >
+						<input id="disabili" name="disabili" type="hidden" value="No" >
+						<input id="bambini" name="bambini" type="hidden" value="No" >
+						<input id="wifi" name="wifi" type="hidden" value="No" >
+						<input id="portapacchi" name="portapacchi" type="hidden" value="No" >
+						<input id="rimorchio" name="rimorchio" type="hidden" value="No" >
+						<input id="bluetooth" name="bluetooth" type="hidden" value="No" >
+							
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<table class="costoservizio" width="100%"><tr>
+						 <td width="60%" align="center">
+						  <font size="3" color="#fff"><b>COSTO SERVIZIO</b></font>
+						 </td>
+						 <td width="40%" align="center" >
+						  <font size="5" color="#fff"><b><div id="costocalcolato">--</div></b></font>
+						  <input id="costocalcolato" name="costocalcolato" type="hidden">
+					    </td>
+						</tr></table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<!--<textarea id="notepass" name="notepass" cols="30" rows="10" class="scrivo" placeholder="Note"></textarea>-->
+						<input id="notepass" name="notepass" type="hidden" value="No" >
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="50%" align="left" colspan="2">
+						<font size="3" color="#fff">Grandezza Pacco</font>
+					</td>
+					
+				</tr>
+				
+				<tr>
+					
+					<td width="50%" align="left" colspan="2">
+						<select id="grandezza" name="grandezza" data-theme="c" >
+							<option value="Piccolo" selected>Piccolo</option>
+							<option value="Medio">Medio</option>
+							<option value="Grande">Grande</option>
+						</select>
+						<!--<input id="grandezza" name="grandezza" type="text" value="" placeholder="Piccolo/Medio/Grande" class="scrivo">-->
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" valign="center" colspan="2">
+						
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" align="left" colspan="2">
+						<font size="3" color="#fff">Pagamento in contanti</font>
+					</td>
+					
+				</tr>
+				<tr>
+					<td width="50%" align="left" colspan="2">
+						<select id="emaildestinatario" name="emaildestinatario" data-theme="c" >
+							<option value="Ritiro" selected>Al Ritiro del pacco</option>
+							<option value="Consegna">Alla consegna</option>
+						</select>
+						
+						<!--<input id="emaildestinatario" name="emaildestinatario" type="text" value="" placeholder="" class="scrivo">-->
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" valign="center" colspan="2">
+						
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" valign="center" colspan="2">
+						<table width="75%" align="center"><tr>
+						 <td width="100%" align="center" >
+							 <font size="3" color="#fff"><b>CODICE DI SICUREZZA</b></font>
+						 </td>
+						</tr></table>
+						
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<table width="75%" align="center"><tr>
+						 <td width="100%" align="center" >
+							<input id="cod_sicurezza" name="cod_sicurezza" value="" class="scrivo" readonly>
+						 </td>
+						</tr></table>
+			
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<!--<a id="back33" href="#" data-role="button" data-theme="b" >Invia</a>-->
+						<!--<a data-role="button" id="anteprima3" href="#" data-theme="b" class="custom-pass12"><font color="#fff">Anteprima</font></a>-->
+					</td>
+				</tr>
+			</table>
+			</form><br><br><br>
+			<!--ANDROID-->
+			<br><br> <br>  &nbsp;&nbsp;<br> &nbsp;&nbsp;<br>&nbsp;&nbsp;<br> <br>&nbsp;&nbsp;<br>&nbsp;&nbsp;<br> &nbsp;&nbsp;<br>&nbsp;&nbsp;<br> <br>&nbsp;&nbsp;<br><br>&nbsp;&nbsp;<br> &nbsp;&nbsp;<br>&nbsp;&nbsp;<br> <br>&nbsp;&nbsp;<br>
+
+		</div>
+			</div>
+			
+			
+			<table id="zoccolo" width="100%" border="0" align="center" valign="center" class="div59" >
+				<tr>
+					<td algn="center" width="100%" align="center" valign="center">
+						
+					</td>
+				</tr>
+			</table>
+			
+		
+		<table width="100%" border="0" align="center" valign="center" class="div599" >
+			<tr>
+				<td width="100%" align="center" valign="center">
+					<a id="back33" href="#" data-role="button" data-theme="b" > Invia Richiesta </a>
+				</td>
+			</tr>
+		</table>
+		
+		
+		</div>
+		
+		<div data-role=page id=home7 class="div2">
+
+		<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div4">
+				
+				<table align="center" width="100%" valign="center" border="0" height="52">
+					<tr>
+						<td align="left" valign="center" width="43px"><a id="piu" href="#" rel="external"><img src="img/sinistra.png" height="42"></a></td>
+						<td align="left" valign="center" width="22px">
+							<div id="led"><img src="img/ledverde.png" width="20px"></div>
+						</td>
+						<td align="right" valign="center" width="100%">
+							<table align="right">
+								<td align="right" valign="center" width="100%"><font color="#fff"><b><div valign="center" id="win22header" class="nuova"><div id="riepilogo">Riepilogo</div></div></b></font></td>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<table border="0" valign="center" align="center" class="transbox5" valign="center">
+				<tr>
+					<td width="100%" align="center" colspan="6">
+						<br><font color="#fff"><b>SPEDISCI PACCO</b>
+							</td>
+				</tr>
+				
+				<tr>
+					<td align="center" >
+						<a id="quando" href="#"><img id="quando3" src="icone/Clock.png" width="45px"></a>
+					</td>
+					<td align="center" >
+						<a id="da2" href="#"><img id="da3" src="icone/Pin.png" width="45px"></a>
+					</td>
+					<td align="center" >
+						<a id="a2" href="#"><img id="a23" src="icone/Flag.png" width="45px"></a>
+					</td>
+					<td align="center" >
+						<a id="piu" href="#"><img id="piu3" src="img/ico_go1.png" width="45px"></a>
+						
+					</td>
+					<td align="center" valign="center">
+						<a id="offerte" href="#"><img id="anteprima3" src="icone/Informazioni.png" width="55px"></a>
+					</td>
+					<!--<td align="center" valign="center">
+						<a id="offerte" href="#"><img id="offerte3" src="img/ico_offerte1.png" width="45px"></a>
+					</td>-->
+				</tr>
+			</table>
+			
+			
+			<div class="spinner" id="spinner7"></div>
+			
+			<div id="wrapper3">
+				<div class="iScroller">
+					
+			<table id="spazioipad7" height="20px"><tr><td></td></tr></table>
+					
+			<form name="formia7" action="entra.asp" method="post">
+				
+				<table align="center" width="90%" height="" border="0" valign="center" class="tabella">
+					<tr>
+						<td width="100%" align="left" colspan="2">
+				
+						  </td>
+						</tr>
+								
+								<tr>
+									<td width="100%" align="center" valign="center" colspan="2">
+										<!--<table border="0" hight="10px"><tr><td></td></tr></table>-->
+									</td>
+								</tr>
+
+								<tr>
+									<td width="100%" align="left" colspan="2">
+										<input id="datacal7" name="datacal7" type="hidden" value="" readonly><input id="orario7" name="orario7" type="hidden" value="" readonly><input id="minuti7" name="minuti7" type="hidden" value="" readonly>
+										<div id="posticipata7"></div>
+									</td>
+								</tr>
+								<tr>
+									<td width="100%" align="left" colspan="2">
+									  <input id="viale7" name="viale7" type="hidden" value="" readonly>
+									  <div id="viale77"></div>
+									</td>
+								</tr>
+								<tr>
+									<td width="100%" align="left" colspan="2">
+										<input id="destinazione7" name="destinazione7" type="hidden" value="" placeholder="destinazione" readonly>
+										<div id="destinazione77"></div>
+									</td>
+								</tr>
+
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="veicolo77"></p>
+                                        <input id="veicolo7" name="veicolo7" type="hidden" value="" >
+									</td>
+								</tr>
+								
+								<tr>
+									<td width="100%" align="left" colspan="2">
+										<br><b><font color='#cc33cc'><div id="opzioni">Opzioni</div></font></b>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="passeggeri7">Passeggeri No</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="fumatori7">Fumatori  No</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="animali7">Animali  No</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="meno187">Meno 18 anni  No</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="disabili7">Disabili  No</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="bambini7">Bambini  No</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="wifi7">WiFi  No</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="portapacchi7">Portapacchi  --</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="rimorchio7">Rimorchi  --</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="bluetooth7">bluetooth7  --</p>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="left" valign="center" colspan="2">
+										<p id="note7">note7  --</p>
+										<!--<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4" >Invia</a>--><br><br>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="center" valign="center" colspan="2">
+										<!--<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4" >Invia</a>--><br><br>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="center" valign="center" colspan="2">
+										<!--<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4" >Invia</a>--><br><br>
+									</td>
+								</tr>
+								
+								
+							</table>
+						</td>
+					</tr>
+					
+					
+				</table>
+
+				
+			</form>
+			
+			<table id="zoccolo" width="100%" border="0" align="center" valign="center" class="div59" >
+				<tr>
+					<td algn="center" width="100%" align="center" valign="center">
+						
+					</td>
+				</tr>
+			</table>
+			
+				</div>
+			</div>
+			
+			<table width="100%" border="0" align="center" valign="center" class="div599" >
+				<tr>
+					<td width="100%" align="center" valign="center">
+						<a id="back3" href="#" data-role="button" data-theme="b" > Invia Richiesta </a>
+					</td>
+				</tr>
+			</table>
+			
+
+			<!--<div id="footer9" data-position="fixed" data-role="footer" data-theme="b" data-tap-toggle="false" class="div1" data-transition="none">
+				<table id="idfooter4" width="100%" align="center">
+					<tr>
+						<td width="100%" align="center">
+							<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn33" >Invia</a>
+						</td>
+					</tr>
+				</table>
+			</div>-->
+			
+		</div>
+		
+		<div data-role=page id=home4 class="div22">
+			
+			<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div4">
+				
+				<table align="center" width="100%" valign="center" border="0" height="52">
+					<tr>
+						<td align="left" valign="center" width="43px"><a id="indietro4" href="#" rel="external"><img src="img/sinistra.png" height="42"></a></td>
+						<td align="left" valign="center" width="22px">
+							<div id="led4"><img src="img/ledverde.png" width="20px"></div>
+						</td>
+						<td align="right" valign="center" width="100%">
+							<table align="right">
+								<td align="right" valign="center" width="100%"><font color="#fff"><b><div valign="center" id="win22header" class="nuova"><div id="h4autisti">Autisti in zona</div></div></b></font></td>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<!--<audio id="successArrivo" src="sound/bell.mp3" type="audio/mpeg" ></audio>-->
+			
+			<table border="0" valign="center" align="center" class="transbox5" valign="center">
+				<tr>
+					<td width="100%" align="center" colspan="6">
+						<br><font color="#fff"><b>SPEDISCI PACCO</b>
+					</td>
+				</tr>
+				
+				<tr>
+					<td align="center" >
+						<a id="quando" href="#"><img id="quando3" src="icone/Clock.png" width="45px"></a>
+					</td>
+					<td align="center" >
+						<a id="da" href="#"><img id="da3" src="icone/Pin.png" width="45px"></a>
+					</td>
+					<td align="center" >
+						<a id="#" href="#"><img id="a23" src="icone/Flag.png" width="45px"></a>
+					</td>
+					<td align="center" >
+						<a id="piu" href="#"><img id="piu3" src="img/ico_go1.png" width="45px"></a>
+						
+					</td>
+					<td align="center" valign="center">
+						<a id="offerte" href="#"><img id="anteprima3" src="icone/Informazioni.png" width="55px"></a>
+					</td>
+					<!--<td align="center" valign="center">
+						<a id="offerte" href="#"><img id="offerte3" src="img/ico_offerte1.png" width="45px"></a>
+					 </td>-->
+				</tr>
+			</table>
+			
+			
+			<div class="spinner" id="spinner4"></div>
+			
+			<div id="wrapper">
+				<div class="iScroller">
+					
+			   <form name="formia4" action="entra.asp" method="post">
+				
+				<table id="spazioipadofferte" height="55px" style="display:none"><tr><td></td></tr></table>
+				
+				<div id="offerte4" >
+					
+                </div>
+				
+			  </form>
+			
+			
+			  <br><br>
+			
+			<!--fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf<br><br> fdjfdjkfj dfkjdfkd fjdkfkd j jf 555 <br> dffdskfjsdkf sdjsdk fsd<br><br> adkddjka645684596845n495869045 45945 45968456845 09-->
+			
+			
+				</div>
+			</div>
+			
+			
+			<a href="#mypanelH2" data-role=button id=btnpanel data-theme="b" style="display:none"></a>
+			<audio id="successChat1" src="sound/send_chat.mp3" type="audio/mpeg" ></audio>
+			<audio id="successChat2" src="sound/sound/new_chat.mp3" type="audio/mpeg" ></audio>
+			
+			<div data-role="panel" id="mypanelH2" style="overflow-y: scroll" data-position="right" data-display="overlay" width="100%" data-theme="b">
+				<center>
+					
+					<table border="0" width="100%" align="center">
+						<tr>
+							<td align="center" width="25%">
+								<img src="img/ico_chat2.png" width="40">
+							</td>
+							<td align="center" width="50%">
+								<table class="tabella1"><tr><td><font color="#FFF"><div id="nickhome6"></div></font></td></tr></table>
+							</td>
+							<td align="center" width="25%">
+								<a id="chiudichat" href="#" data-rel="close"><img src="img/ico_close1.png" width="40"></a>
+							</td>
+							
+						</tr>
+					</table>
+					
+					<div class="spinner" id="spinner6"></div>
+					
+					<form name="formia6" action="entra.asp" method="post">
+						<table id="spazioipad" height="30px" class="divchat"><tr><td></td></tr></table>
+						
+						<table id="tblchat" width="90%" align="center" class="tabellaA">
+							<tr>
+								<td width="100%" align="center" >
+									<textarea id="chattext" cols="30" rows="2" class="scrivo" placeholder="Scrivi messaggio"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td width="100%" align="center">
+									<a id="back6" href="#" data-role="button" data-theme="b" class="custom-btn33">Invia messaggio</a>
+								</td>
+							</tr>
+							
+							<tr>
+								<td width="100%" align="center" >
+									<div id="offerta6" ></div>
+								</td>
+							</tr>
+							
+						</table>
+						
+					</form>
+			</div>
+			
+			
+		</div>
+		
+		<div data-role=page id=home6 class="divchat">
+			
+			<!--<table border="0" width="100%" align="center" class="transbox4A">
+				<tr>
+				<td colspan="3">
+					<table id="spazioipad" height="15px"><tr><td></td></tr></table>
+				</td>
+				</tr>
+				<tr>
+					<td align="center" width="25%">
+						<div id="4img"><img src="img/chat.png" width="45"></div>
+					</td>
+					<td align="center" width="50%">
+						<table class="tabella1"><tr><td><font color="#FFF"><div id="nickhome6">NickName</div></font></td></tr></table>
+					</td>
+					<td align="center" width="25%">
+						<a id="indietro6" href="#"><img src="img/ico_close1.png" width="45"></a>
+					</td>
+				</tr>
+			</table>
+			
+			<div class="spinner" id="spinner6"></div>
+			
+			<form name="formia6" action="entra.asp" method="post">
+				<table id="spazioipad" height="60px" class="divchat"><tr><td></td></tr></table>
+				<br><br>
+				<table id="tblchat" width="90%" align="center" class="tabellaA">
+					<tr>
+						<td width="100%" align="center" >
+							<textarea id="chattext" cols="30" rows="4" class="scrivo" placeholder="Scrivi messaggio"></textarea>
+						</td>
+					</tr>
+					
+					<tr>
+						<td width="100%" align="center" ><br></td>
+					</tr>
+					
+				</table>
+				<br>
+				&nbsp;<div id="offerta6" ></div>
+				
+			</form>
+			
+			<table id="zoccolo" width="100%" border="0" align="center" valign="center" class="div59" >
+				<tr>
+					<td algn="center" width="100%" align="center" valign="center">
+						
+					</td>
+				</tr>
+			</table>
+			
+			<table width="100%" border="0" align="center" valign="center" class="div599" >
+				<tr>
+					<td width="100%" align="center" valign="center">
+						<a id="back6" href="#" data-role="button" data-theme="b" class="custom-btn33">Invia messaggio</a>
+					</td>
+				</tr>
+			</table>-->
+			
+			<!--<div id="footer" data-role="footer" align="left" data-theme="b" data-position="fixed" data-tap-toggle="false" class="div3">
+			 <a href="index.html" rel="external" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">Back</a>
+			 </div>-->
+			
+		</div>
+		
+		
+		
+
+    </body>
+</html>

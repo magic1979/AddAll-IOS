@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<widget xmlns = "http://www.w3.org/ns/widgets"
+		xmlns:gap = "http://phonegap.com/ns/1.0"
+		id        = "com.addall"
+		versionCode="1.3"
+		version   = "1.3">
+		<name>AddAll</name>
+		<description>AddAll,Gioco di Abilita, giochi di numeri, skill game</description>
+		<author href="http://msop.it" email="info@msop.it">
+			Associazione Game Answer
+		</author>
+		
+		<preference name="phonegap-version" value="cli-6.5.0" />
+		<preference name="orientation" value="portrait" />
+		<preference name="android-windowSoftInputMode" value="adjustResize" />
+		<preference name="fullscreen" value="false" />
+		<preference name="target-device" value="handset" /> <!--universal-->
+		<preference name="webviewbounce" value="true" />
+		<preference name="prerendered-icon" value="true" />
+		<preference name="stay-in-webview" value="true" />
+		<preference name="ios-statusbarstyle" value="black-opaque" />
+		<preference name="detect-data-types" value="true" />
+		<preference name="exit-on-suspend" value="true" />
+		<preference name="show-splash-screen-spinner" value="true" />
+		<preference name="auto-hide-splash-screen" value="true" />
+		<preference name="EnableViewportScale" value="true" />
+		<preference name="MediaPlaybackRequiresUserAction" value="true" />
+		<preference name="AllowInlineMediaPlayback" value="true" />
+		<preference name="BackupWebStorage" value="cloud" />
+		<preference name="TopActivityIndicator" value="gray" />
+		<preference name="KeyboardDisplayRequiresUserAction" value="true" />
+		<preference name="HideKeyboardFormAccessoryBar" value="true" />
+		<preference name="SuppressesIncrementalRendering" value="true" />
+		<preference name="android-minSdkVersion" value="15" />
+		<preference name="android-targetSdkVersion" value="15" />
+		<preference name="android-installLocation" value="auto" />
+		<preference name="SplashScreen" value="splash" />
+		<preference name="SplashScreenDelay" value="10000" />
+		<preference name="SplashMaintainAspectRatio" value="false" />
+		<preference name="ErrorUrl" value="http://www.aermes.it"/>
+		<preference name="BackgroundColor" value="#edebe7"/>
+		<preference name="KeepRunning" value="true"/>
+		<preference name="DisallowOverscroll" value="true"/> 
+		<preference name="LoadUrlTimeoutValue" value="20000" />
+		<preference name="disable-cursor" value="true" />
+		<preference name="StatusBarOverlaysWebView" value="false" />
+		<preference name="GapBetweenPages" value="0" />
+		<preference name="android-build-tool" value="gradle" />
+		<preference name="CrosswalkAnimatable" value="true" />
+		
+		<feature name="http://api.phonegap.com/1.0/battery"/>
+		<feature name="http://api.phonegap.com/1.0/geolocation"/>
+		<feature name="http://api.phonegap.com/1.0/media"/>
+		<feature name="http://api.phonegap.com/1.0/network"/>
+		<feature name="http://api.phonegap.com/1.0/notification"/>
+		
+		<plugin name="cordova-plugin-battery-status"      source="npm" />
+		<plugin name="cordova-plugin-camera"              source="npm" >
+      		<variable name="CAMERA_USAGE_DESCRIPTION" value="Allow the app to use your camera" />
+      		<variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Allow the app to access your photos" />
+    	</plugin>
+    	<plugin name="cordova-plugin-media-capture"       source="npm"  >
+     	 <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Allow the app to access your photos" />
+		 <variable name="MICROPHONE_USAGE_DESCRIPTION" value="App would like to access the microphone." />
+		 <variable name="CAMERA_USAGE_DESCRIPTION" value="Allow the app to use your camera" />
+    	</plugin>
+		<plugin name="cordova-plugin-console"             source="npm" />
+		<plugin name="cordova-plugin-contacts"            source="npm" />
+		<plugin name="cordova-plugin-device"              source="npm" />
+		<plugin name="cordova-plugin-device-motion"       source="npm" />
+		<plugin name="cordova-plugin-device-orientation"  source="npm" />
+		<plugin name="cordova-plugin-dialogs"             source="npm" />
+		<plugin name="cordova-plugin-file"                source="npm" />
+		<plugin name="cordova-plugin-file-transfer"       source="npm" />
+		<plugin name="cordova-plugin-geolocation"         source="npm" />
+		<plugin name="cordova-plugin-globalization"       source="npm" />
+		<plugin name="cordova-plugin-inappbrowser"        source="npm" />
+		<plugin name="cordova-plugin-media"               source="npm" />
+		<plugin name="cordova-plugin-network-information" source="npm" />
+		<plugin name="cordova-plugin-splashscreen"        source="npm" />
+		<plugin name="cordova-plugin-statusbar"           source="npm" />
+		<plugin name="cordova-plugin-vibration"           source="npm" />
+		<plugin name="cordova-plugin-whitelist"           source="npm" />
+		
+
+		<plugin name="cordova-plugin-pushplugin" source="npm" />
+		<plugin name="cordova-plugin-datepicker" source="npm" />
+		<plugin name="cordova-plugin-insomnia" source="npm" />
+		
+		<!--IOS EMAIL -->
+		<gap:plugin name="cordova-plugin-email-composer" version="0.8.3" source="npm" /> 
+
+		<plugin name="ionic-plugin-keyboard"  source="npm" />
+		<plugin name="cordova-plugin-request-location-accuracy" source="npm" />
+		<!--<plugin name="cordova-plugin-mauron85-background-geolocation" version="2.2.0"/>-->
+		
+		<plugin name="com.darktalker.cordova.screenshot" source="npm" />
+		<gap:plugin name="cordova-plugin-admobpro" source="npm" />
+		<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+		<gap:plugin name="cordova-plugin-nativeaudio" source="npm" />
+		
+
+	<platform name="ios">
+        <icon   src="res/icon/ios/icon.png"                         platform="ios" width="57"   height="57" />
+        <icon   src="res/icon/ios/icon@2x.png"                      platform="ios" width="114"  height="114" />
+        <icon   src="res/icon/ios/icon-40.png"                      platform="ios" width="40"   height="40" />
+        <icon   src="res/icon/ios/icon-40@2x.png"                   platform="ios" width="80"   height="80" />
+        <icon   src="res/icon/ios/icon-50.png"                      platform="ios" width="50"   height="50" />
+        <icon   src="res/icon/ios/icon-50@2x.png"                   platform="ios" width="100"  height="100" />
+        <icon   src="res/icon/ios/icon-60.png"                      platform="ios" width="60"   height="60" />
+        <icon   src="res/icon/ios/icon-60@2x.png"                   platform="ios" width="120"  height="120" />
+        <icon   src="res/icon/ios/icon-60@3x.png"                   platform="ios" width="180"  height="180" />
+        <icon   src="res/icon/ios/icon-72.png"                      platform="ios" width="72"   height="72" />
+        <icon   src="res/icon/ios/icon-72@2x.png"                   platform="ios" width="144"  height="144" />
+        <icon   src="res/icon/ios/icon-76.png"                      platform="ios" width="76"   height="76" />
+        <icon   src="res/icon/ios/icon-76@2x.png"                   platform="ios" width="152"  height="152" />
+		<icon   src="res/icon/ios/icon-76@3.png"                    platform="ios" width="228"   height="228" />
+        <icon   src="res/icon/ios/icon-small.png"                   platform="ios" width="29"   height="29" />
+        <icon   src="res/icon/ios/icon-small@2x.png"                platform="ios" width="58"   height="58" />
+        <icon   src="res/icon/ios/icon-small@3x.png"                platform="ios" width="87"   height="87" />
+		
+        <splash src="res/screen/ios/640x1136.png"     				platform="ios" width="640"  height="1136" />
+        <splash src="res/screen/ios/750x1334.png"               	platform="ios" width="750"  height="1334" />
+        <splash src="res/screen/ios/1242x2208.png"               	platform="ios" width="1242" height="2208" />
+        <splash src="res/screen/ios/Default-Landscape-736h.png"     platform="ios" width="2208" height="1242" />
+        <splash src="res/screen/ios/Default-Landscape@2x~ipad.png"  platform="ios" width="2048" height="1536" />
+        <splash src="res/screen/ios/Default-Landscape~ipad.png"     platform="ios" width="1024" height="768" />
+        <splash src="res/screen/ios/1536x2048.png"   				platform="ios" width="1536" height="2048" />
+        <splash src="res/screen/ios/768x1024.png"      				platform="ios" width="768"  height="1024" />
+        <splash src="res/screen/ios/640x960.png"          			platform="ios" width="640"  height="960" />
+        <splash src="res/screen/ios/320x480.png"             		platform="ios" width="320"  height="480" />
+      </platform>
+		
+		
+		<access origin="*" />
+		<access origin="content:///*" />
+		<access origin="http://google.com" subdomains="true"  />
+		<access origin="http://google.com" subdomains="true"  />
+		<access origin="https://googleapis.com" subdomains="true"  />
+		<access origin="http://gstatic.com" subdomains="true"  />
+		<access origin="https://gstatic.com" subdomains="true"  />
+		<access origin="http://googleapis.com" subdomains="true"  />
+		<access origin="http://google.com" subdomains="true"  />
+		<access origin="http://google.com" subdomains="true"  />
+		<access origin="https://googleapis.com" subdomains="true"  />
+		<access origin="http://gstatic.com" subdomains="true"  />
+		<access origin="https://gstatic.com" subdomains="true"  />
+		<access origin="http://googleapis.com" subdomains="true"  />
+		
+		
+		<allow-intent href="http://*/*" />
+		<allow-intent href="https://*/*" />
+		<allow-intent href="tel:*" />
+		<allow-intent href="sms:*" />
+		<allow-intent href="mailto:*" />
+		<allow-intent href="geo:*" />
+		
+		
+	</widget>

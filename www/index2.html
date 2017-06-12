@@ -1,0 +1,2440 @@
+<html>
+    <head>
+        <title>Geolocation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+                        
+                        <link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
+                        <link rel="stylesheet" href="themes/Purples.css" />
+                        <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+                        <link rel="stylesheet" href="css/spinner.css" />
+						<link rel="stylesheet" href="css/font.css" />
+						
+						<link rel="stylesheet" href="chat.css" />
+						<link href="css/hover.css" rel="stylesheet" media="all">
+						<link rel="stylesheet" href="style/stylepurples.css" />
+						
+                        <meta name="apple-mobile-web-app-capable" content="yes">
+                        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+                                
+                            <script src="jquery-1.10.2.min.js"></script>
+                            <script src="js/jquery.mobile-1.4.2.min.js"></script>
+							
+							 <script type="text/javascript" src="js/iscroll.js"></script>
+							 
+                      <style>
+						  
+						  body {
+							  -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+							  -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+							  -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+							  background-color:#fff;
+							  background-attachment:fixed;
+							  font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+							  font-size:12px;
+							  margin:0px;
+							  padding:0px;
+							  
+						  }
+					  
+					  #header {
+						  position: absolute;
+						  z-index: 2;
+						  top: 0;
+						  left: 0;
+						  width: 100%;
+						  height: 56px;
+						  line-height: 45px;
+						  padding: 0;
+						  color: #fff;
+						  font-size: 20px;
+						  text-align: center;
+						  font-weight: bold;
+					  }
+					  
+					  
+					  #wrapper {
+						  position: absolute;
+						  z-index: 1;
+						  top: 50px;
+						  bottom: 0px;
+						  left: 0;
+						  width: 100%;
+						  overflow: hidden;
+					  }
+					  
+					  #wrapper2 {
+						  position: absolute;
+						  z-index: 1;
+						  top: 70px;
+						  bottom: 50px;
+						  left: 0;
+						  width: 100%;
+						  overflow: hidden;
+					  }
+					  
+					  #wrapper3 {
+						  position: absolute;
+						  z-index: 1;
+						  top: 50px;
+						  bottom: 0px;
+						  left: 0;
+						  width: 100%;
+						  overflow: hidden;
+					  }
+					  
+					  #wrapper5 {
+						  position: absolute;
+						  z-index: 1;
+						  top: 50px;
+						  bottom: 0px;
+						  left: 0;
+						  width: 100%;
+						  overflow: hidden;
+					  }
+					  
+					  .iScroller {
+						  position: absolute;
+						  z-index: 1;
+						  -webkit-tap-highlight-color: rgba(0,0,0,0);
+						  width: 100%;
+						  -webkit-transform: translateZ(0);
+						  -moz-transform: translateZ(0);
+						  -ms-transform: translateZ(0);
+						  -o-transform: translateZ(0);
+						  transform: translateZ(0);
+						  -webkit-touch-callout: none;
+						  -webkit-user-select: none;
+						  -moz-user-select: none;
+						  -ms-user-select: none;
+						  user-select: none;
+						  -webkit-text-size-adjust: none;
+						  -moz-text-size-adjust: none;
+						  -ms-text-size-adjust: none;
+						  -o-text-size-adjust: none;
+						  text-size-adjust: none;
+					  }
+					  
+					  
+					  
+					  .div4 {
+						  background-color: #cc33cc;
+						  height: 52px;
+						  border: none;
+						  
+						  
+					  }
+					  
+					  .div44 {
+						  background-color: #cc33cc;
+						  height: 70px;
+						  border: none;
+						  
+						  
+					  }
+					  
+					    .div1 {
+							background-color: #e260fe;
+					    }
+
+
+						.div2 {
+							background-image: url("img/sfondo.png");
+							background-color: #fff;
+						}
+					  
+					  .divchat {
+                          background: transparent !important;
+						  
+						  background-repeat: no-repeat;
+						  background-attachment: fixed;
+					  }
+					  
+					  .timerviola {
+							background-color: #FF0000;
+							height:60px;
+							
+							-moz-border-radius: 10px;
+							-webkit-border-radius: 10px;
+							-o-border-radius: 10px;
+					  }
+					  
+					  .timerviolaA {
+						  background-color: #FF0000;
+						  height:60px;
+						  
+						  -moz-border-radius: 10px;
+						  -webkit-border-radius: 10px;
+						  -o-border-radius: 10px;
+					  }
+					  
+					  .timerviolaB {
+						  background-color: #FF0000;
+						  height:60px;
+						  
+						  -moz-border-radius: 10px;
+						  -webkit-border-radius: 10px;
+						  -o-border-radius: 10px;
+					  }
+					  
+					  .xalto {
+						z-index: 20;
+						top:30px;
+					  }
+
+                      .div3 {
+                          background: rgb(125,126,125); /* Old browsers */
+                          background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6+ */
+                          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(125,126,125,1)), color-stop(100%,rgba(14,14,14,1))); /* Chrome,Safari4+ */
+                          background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10+,Safari5.1+ */
+                          background: -o-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Opera 11.10+ */
+                          background: -ms-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* IE10+ */
+                          background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C */
+                          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+                      }
+						#win2 {
+							max-width: none;
+						}
+                      
+                      #radar{
+                          position:relative;
+                          width:150px;
+                          height:150px;
+                          background:#222 url(images/vY6Tl.png);
+                          border-radius:150px;
+                          overflow:hidden;
+                      }
+                      #rad{
+                          position:absolute;
+                          width:150px;
+                          height:150px; background:url(images/fbgUD.png);
+                      }
+                      .obj{
+                          background:#cf5;
+                          position:absolute;
+                          border-radius:10px;
+                          width:4px;
+                          height:4px;
+                          margin-top:-2px;
+                          margin-left:-2px;
+                          box-shadow:0 0 10px 5px rgba(100,255,0,0.5);
+                          opacity:0.2;
+                      }
+					  
+                      /*#content {
+                          padding: 0;
+                          position : absolute !important;
+                          top : 0px !important;
+                          right : 0;
+                          bottom : 0px !important;
+                          left : 0 !important;
+                      }*/
+					  
+					  .contento {
+						  padding: 0;
+						  position : absolute !important;
+						  top : 50px !important;
+						  right : 0;
+						  bottom : 0px !important;
+						  left : 0 !important;
+						  height : 100%;
+					  }
+					  
+					  
+                      .circolare {
+                          width: 110px;
+                          height: 110px;
+                          border-radius:999em;
+                          -moz-border-radius:999em;
+                          -webkit-border-radius:999em;
+                          -o-border-radius: 999em;
+                          
+                          -webkit-box-shadow: 0px 0px 0.5px 1px #000;
+                          -moz-box-shadow: 0px 0px 0.5px 1px #000;
+                          box-shadow: 0px 0px 0.5px 1px #000;
+                      }
+                      .conn {
+                          font-size: 9pt;
+                          color:#FFF;
+                          background-color: #9d3434;
+                      }
+                      .home {
+                          background-color: #9d3434;
+                          background-image: url(images/right.png);
+                          background-size: 20px 20px;
+                          background-repeat: no-repeat;
+                          background-position:center;
+                          
+                          height:40px;
+                          width:40px;
+                          border-radius:999em;
+                          -moz-border-radius:999em;
+                          -webkit-border-radius:999em;
+                          -o-border-radius: 999em;
+                          
+                          -webkit-box-shadow: 0px 0px 0.5px 1px #FFF;
+                          -moz-box-shadow: 0px 0px 0.5px 1px #FFF;
+                          box-shadow: 0px 0px 0.5px 1px #FFF;
+                      }
+                      
+                      .home:active {
+                          background-color: #000000;
+                          border-radius:999em;
+                          -moz-border-radius:999em;
+                          -webkit-border-radius:999em;
+                          -o-border-radius: 999em;
+                          
+                          -webkit-box-shadow: 0px 0px 0.5px 1px #000;
+                          -moz-box-shadow: 0px 0px 0.5px 1px #000;
+                          box-shadow: 0px 0px 0.5px 1px #000;
+                      }
+                      
+                      .banner {
+                          left: 5px;
+                          bottom:60px;
+                          position: fixed;
+                          
+                          -moz-border-radius: 10px;
+                          -webkit-border-radius: 10px;
+                          -o-border-radius: 10px;
+                      }
+					  
+					  .sopra {
+						  background-color: #ffffff;
+						  left: 50px;
+						  height:100px;
+						  width:100px;
+						  
+						  -moz-border-radius: 10px;
+						  -webkit-border-radius: 10px;
+						  -o-border-radius: 10px;
+						  
+						  z-index: 10;
+					  }
+					  
+					  .noblu {
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+					  }
+					  
+					  .transbox {
+						  background: transparent !important;
+						  position: absolute;
+						  z-index: 2;
+						  top:3px;
+						  left:0px;
+						  width:98%;
+						  height: 8%;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+					  }
+					  
+					  .transbox4 {
+						  position: absolute;
+						  z-index: 2;
+						  top:20px;
+						  width:95%;
+
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+					  }
+					  
+					  .transbox4A {
+						  background-image: url("img/sfondo.png");
+						  background-color: #fff;
+						  
+						  position: absolute;
+						  z-index: 2;
+						  top:0px;
+						  width:100%;
+						  
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+					  }
+					  
+					  .div555 {
+						  position: absolute;
+						  z-index: 20;
+						  bottom: 30px;
+						  left: 5px;
+						  width: 100%;
+						  height: 10%;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  
+					  }
+					  
+					  
+					  .div55 {
+						  position: absolute;
+						  z-index: 20;
+						  bottom: 25px;
+						  left: 0;
+						  width: 100%;
+						  height: 5%;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  border: 0px solid #000;
+					  }
+					  
+					  .divAA {
+						  position: absolute;
+						  z-index: 20;
+						  bottom: 310px;
+						  left: 0;
+						  width: 100%;
+						  height: 5%;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  border: 0px solid #000;
+					  }
+					  
+					  .divmagia {
+						  position: absolute;
+						  z-index: 20;
+						  top: 45px;
+						  left: 0;
+						  width: 100%;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: left;
+						  font-weight: bold;
+						  
+						  border: 0px solid #000;
+					  }
+					  
+					  .div56 {
+						  background-color: #cc33cc;
+						  position: absolute;
+						  bottom: 60px;
+						 
+						  width: 270px;
+						  height: 260px;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  font-size: 22px;
+						  
+						  top:50%;
+						  left:50%;
+						  padding:15px;
+						  -ms-transform: translateX(-50%) translateY(-50%);
+						  -webkit-transform: translate(-50%,-50%);
+						  transform: translate(-50%,-50%);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 150;
+					  }
+							
+							
+							
+							
+					  
+					  .div562 {
+						  background-color: #fff;
+						  position: absolute;
+						  z-index: 30;
+						  bottom: 60px;
+						  
+						  width: 270px;
+						  height: 260px;
+						  color: #000;
+						  
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  font-size: 22px;
+						  
+						  top:50%;
+						  left:50%;
+						  padding:15px;
+						  -ms-transform: translateX(-50%) translateY(-50%);
+						  -webkit-transform: translate(-50%,-50%);
+						  transform: translate(-50%,-50%);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 100;
+					  }
+					  
+					  .div5621 {
+						  background-color: #fff;
+						  position: absolute;
+						  z-index: 30;
+						  bottom: 60px;
+						  
+						  width: 270px;
+						  height: 260px;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  font-size: 22px;
+						  
+						  top:50%;
+						  left:50%;
+						  padding:15px;
+						  -ms-transform: translateX(-50%) translateY(-50%);
+						  -webkit-transform: translate(-50%,-50%);
+						  transform: translate(-50%,-50%);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 110;
+					  }
+					  
+					  .div5622 {
+						  
+						  background-color: #fff;
+						  border: 1px solid #000;
+						  border-color: #cc33cc;
+
+						  position: absolute;
+						  z-index: 30;
+						  bottom: 60px;
+						  
+						  width: 230px;
+						  height: 260px;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  font-size: 22px;
+						  
+						  top:50%;
+						  left:50%;
+						  padding:15px;
+						  -ms-transform: translateX(-50%) translateY(-50%);
+						  -webkit-transform: translate(-50%,-50%);
+						  transform: translate(-50%,-50%);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 90;
+					  }
+					  
+					  .div5622A {
+						  
+						  background-color: #fff;
+						  border: 1px solid #000;
+						  border-color: #cc33cc;
+						  
+						  position: absolute;
+						  bottom: 60px;
+						  
+						  width: 230px;
+						  height: 260px;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  font-size: 22px;
+						  
+						  top:49%;
+						  left:51%;
+						  padding:15px;
+						  -ms-transform: translateX(-50%) translateY(-50%);
+						  -webkit-transform: translate(-50%,-50%);
+						  transform: translate(-50%,-50%);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 110;
+					  }
+					  
+					  .div5622B {
+						  
+						  background-color: #fff;
+						  border: 1px solid #000;
+						  border-color: #cc33cc;
+						  
+						  position: absolute;
+						  bottom: 60px;
+						  
+						  width: 230px;
+						  height: 260px;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  font-size: 22px;
+						  
+						  top:48%;
+						  left:52%;
+						  padding:15px;
+						  -ms-transform: translateX(-50%) translateY(-50%);
+						  -webkit-transform: translate(-50%,-50%);
+						  transform: translate(-50%,-50%);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 130;
+					  }
+					  
+					  
+					  
+					  .tblmappa6 {
+						  
+						  top:1px;
+
+					  }
+
+
+					  .div563 {
+						  background-color: #cc33cc;
+						  position: absolute;
+						  z-index: 30;
+						  bottom: 60px;
+						  
+						  width: 200px;
+						  height: 130px;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  top:50%;
+						  left:50%;
+						  padding:15px;
+						  -ms-transform: translateX(-50%) translateY(-50%);
+						  -webkit-transform: translate(-50%,-50%);
+						  transform: translate(-50%,-50%);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 112;
+					  }
+					  
+					  .div57 {
+						  background-color: #FFF;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+
+					  }
+					  
+					  #map_geolocation label { width: auto; display:inline; }
+					  #map_geolocation img { max-height: none; max-width: none; }
+					  
+					  .custom-btn {
+							width: 280px;
+						}
+						
+						.custom-btn2 {
+							width: 280px;
+						}
+					  
+					  .custom-close {
+						  background-color: #cc33cc;
+						  width: 55px;
+						  font-size: 18px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass9 {
+						  background-color: #fff;
+						  width: 50px;
+						  height: 50px;
+						  font-size: 22px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border: 2px solid #cc33cc;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-attesa {
+						  background-color: #cc33cc;
+						  width: 170px;
+						  
+						  font-size: 16px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border: 2px solid #fff;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass {
+						  background-image: url("img/1_viola.png");
+						  background-size: 39px 39px;
+						  background-repeat: no-repeat;
+						  background-position:center;
+						  
+						  background-color: #fff;
+						  width: 50px;
+						  height: 50px;
+						  font-size: 22px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+
+					  }
+					  
+					  .custom-passP {
+						  background-image: url("img/1_viola_pos.png");
+						  background-size: 39px 39px;
+						  background-repeat: no-repeat;
+						  background-position:center;
+						  
+						  background-color: #fff;
+						  width: 50px;
+						  height: 50px;
+						  font-size: 22px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  
+					  }
+					  
+					  .custom-pass1 {
+						  background-image: url("img/1_giallo.png");
+						  background-size: 39px 39px;
+						  background-repeat: no-repeat;
+						  background-position:center;
+						  
+						  background-color: #fff;
+						  width: 50px;
+						  height: 50px;
+						  font-size: 22px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  
+					  }
+					  
+					  .custom-pass1P {
+						  background-image: url("img/1_giallo_pos.png");
+						  background-size: 39px 39px;
+						  background-repeat: no-repeat;
+						  background-position:center;
+						  
+						  background-color: #fff;
+						  width: 50px;
+						  height: 50px;
+						  font-size: 22px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  
+					  }
+					  
+					  .custom-pass22 {
+						  background-color: #00A86B;
+						  width: 70%;
+						  height: 30px;
+						  font-size: 22px;
+						  
+						  color: #000;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border: 2px solid #fff;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass33 {
+						  background-color: #ff6600;
+						  width: 70%;
+						  height: 30px;
+						  font-size: 22px;
+						  
+						  color: #000;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border: 2px solid #fff;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass2 {
+						  background-image: url("img/1_verde.png");
+						  background-size: 39px 39px;
+						  background-repeat: no-repeat;
+						  background-position:center;
+						  
+						  background-color: #fff;
+						  width: 50px;
+						  height: 50px;
+						  font-size: 22px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  
+					  }
+					  
+					  .custom-pass2P {
+						  background-image: url("img/1_verde_pos.png");
+						  background-size: 39px 39px;
+						  background-repeat: no-repeat;
+						  background-position:center;
+						  
+						  background-color: #fff;
+						  width: 50px;
+						  height: 50px;
+						  font-size: 22px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  
+					  }
+
+					  
+					  .custom-pass2A {
+						  background-color: #ff6600;
+						  width: 50px;
+						  height: 20px;
+						  font-size: 18px;
+						  
+						  color: #000;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border: 2px solid #fff;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-pass3 {
+						  background-color: #DC143C;
+						  width: 50px;
+						  height: 50px;
+						  font-size: 22px;
+						  
+						  color: #000;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 5 5 5;
+						  
+						  border: 2px solid #fff;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-btnGPS {
+						  background-color: #f0e1ff;
+						  width: 120px;
+						  font-size: 20px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 10 5 10;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-btnModifica {
+						  background-color: #f0e1ff;
+						  width: 120px;
+						  font-size: 20px;
+						  
+						  color:#FFF;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  padding: 5 10 5 10;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+						
+						.custom-btn3 {
+							background-color: #cc33cc;
+							width: 120px;
+							font-size: 20px;
+							
+							color:#FFF;
+							
+							text-decoration: none;
+							text-shadow:0 0 0;
+							
+							font-family: ubuntu, helvetica, arial;
+							
+							padding: 5 10 5 10;
+							
+							border-radius: 5px;
+							-moz-border-radius: 5px; /* firefox */
+							-webkit-border-radius: 5px; /* safari, chrome */
+						}
+					  
+						
+						.custom-btn33 {
+							background-color: #cc33cc;
+							width: 95%;
+							font-size: 18px;
+							
+							color:#FFF;
+							
+							text-decoration: none;
+							text-shadow:0 0 0;
+							
+							font-family: ubuntu, helvetica, arial;
+							
+							padding: 5 5 5 5;
+							
+							border-radius: 5px;
+							-moz-border-radius: 5px; /* firefox */
+							-webkit-border-radius: 5px; /* safari, chrome */
+						}
+					  
+					  .custom-btn4 {
+						  background-color: #cc33cc;
+						  width: 100px;
+						  font-size: 14px;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#FFF;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-btn4R {
+						  background-color: #cc33cc;
+						  width: 75px;
+						  font-size: 14px;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#FFF;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .custom-btn4blob {
+						  background-color: #cc33cc;
+						  border: 1px solid #000;
+						  border-color: #cc33cc;
+						  
+						  width: 150px;
+						  font-size: 28px;
+						  
+						  padding: 25 5 25 5;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#FFF;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  
+					  .custom-btn5 {
+						  background-color: #ffffff;
+						  width: 120px;
+						  font-size: 14px;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#000000;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .testo_bianco {
+						  font-family: 'Open Sans', sans-serif;
+						  font-size: 16px;
+						  color: #FFFFFF;
+						  text-shadow: 1px 1px 2px #555555;
+					  }
+					  
+					  .testo_biancoIP4 {
+						  font-family: 'Open Sans', sans-serif;
+						  font-size: 13px;
+						  color: #FFFFFF;
+						  text-shadow: 1px 1px 2px #555555;
+					  }
+					  
+					  .testo_biancoIPAD {
+						  font-family: 'Open Sans', sans-serif;
+						  font-size: 26px;
+						  color: #FFFFFF;
+						  text-shadow: 1px 1px 2px #555555;
+					  }
+					  
+					  .testo_sottotitolo {
+						  font-size: 16px;
+						  font-family: 'Open Sans', sans-serif;
+						  font-weight: bold;
+						  color: #873117;
+						  text-shadow: 2px 2px 4px #b1b1b1;
+					  }
+					  
+					  .testo_sottotitoloIP4 {
+						  font-size: 13px;
+						  font-family: 'Open Sans', sans-serif;
+						  font-weight: bold;
+						  color: #873117;
+						  text-shadow: 2px 2px 4px #b1b1b1;
+					  }
+					  
+					  .testo_sottotitoloIPAD {
+						  font-size: 26px;
+						  font-family: 'Open Sans', sans-serif;
+						  font-weight: bold;
+						  color: #873117;
+						  text-shadow: 2px 2px 4px #b1b1b1;
+					  }
+						
+						.tabella {
+							background-color: #eceae4;
+							border: 1px solid #000;
+							border-color: #cc33cc;
+							
+							border-radius: 10px;
+							-moz-border-radius: 10px; /* firefox */
+							-webkit-border-radius: 10px; /* safari, chrome */
+							
+						}
+					  
+					  .tabellaA {
+						  background: transparent !important;
+						  
+						  border: 1px solid #000;
+						  border-color: #cc33cc;
+						  
+						  border-radius: 10px;
+						  -moz-border-radius: 10px; /* firefox */
+						  -webkit-border-radius: 10px; /* safari, chrome */
+						  
+					  }
+					  
+						.tabella1 {
+							background-color:#cc33cc;
+							border: 1px solid #000;
+							border-color: #FFF;
+							
+							top: 10;
+							padding: 0 5 0 5;
+
+							border-radius: 5px;
+							-moz-border-radius: 5px; /* firefox */
+							-webkit-border-radius: 5px; /* safari, chrome */
+						}
+					  
+					  .scrivo {
+						  /*display: block;*/
+						  width: 90%;
+						  margin: 0px;
+						  border: solid 0.5px #dcdcdc;
+						  font-family: sans-serif;
+						  font-size: 20px;
+						  appearance: none;
+						  box-shadow: none;
+						  border-radius: none;
+						  
+						  -webkit-appearance: none;
+						  -webkit-border-radius:0px;
+						  @include border-radius(0);
+					  }
+					  
+					  .conteggiotempo {
+						  background-color: #cc33cc;
+						  z-index: 30;
+						  
+						  width: 90%;
+						  height: 30px;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  .div59 {
+						  background-color: #fff;
+						  position: fixed;
+						  z-index: 19;
+						  bottom: 0;
+						  left: 0;
+						  width: 100%;
+						  height: 50px;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  opacity: 0.2;
+						  filter: alpha(opacity=20);
+						  
+					  }
+					  
+					  .div599 {
+						  /*background-image: url("img/sfondo.png");*/
+						  background-color: #781978;
+						  
+						  position: fixed;
+						  z-index: 20;
+						  bottom: 0;
+						  left: 0;
+						  width: 100%;
+						  height: 50px;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+					  }
+					  
+					  .tdrichieste {
+						  background-color: #fff;
+					  }
+					  
+					  .bannertbl {
+						  background-color: #cc33cc;
+						  
+						  bottom: 20;
+						  left: 25;
+						  width: 250px;
+						  height: 30px;
+						  
+						  text-align: left;
+						  font-weight: bold;
+						  
+					  }
+					  
+					  .bannertbl1 {
+						  background-color: #cc33cc;
+						  position: fixed;
+						  
+						  bottom: 50;
+						  left: 70;
+						  width: 200;
+						  height: 40px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  opacity: 0.5;
+						  filter: alpha(opacity=50);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 99;
+					  }
+					  
+					  .bannertbl2 {
+						  position: fixed;
+						  
+						  bottom: 35;
+						  left: 70;
+						  width: 200;
+						  height: 20px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  z-index: 100;
+					  }
+					  
+					  .bannertbl3 {
+						  position: fixed;
+						  
+						  top: 3;
+						  right: 10;
+						  width: 200px;
+						  height: 42px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  z-index: 100;
+					  }
+					  
+					  
+					  
+					  .bannertbl4 {
+						  background-color: #cc33cc;
+						  position: fixed;
+						  
+						  top: 120;
+						  left: 15;
+						  width: 95%;
+						  height: 40px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  opacity: 0.5;
+						  filter: alpha(opacity=50);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 99;
+					  }
+					  
+					  .bannertbl5 {
+						  position: fixed;
+						  
+						  top: 105;
+						  left: 15;
+						  width: 100%;
+						  height: 16px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  z-index: 100;
+					  }
+					  
+					  
+					  
+					  
+					  .ui-page { -webkit-backface-visibility: hidden; }
+					  
+					  .ui-panel {
+						  width: 250px;
+						  min-height: 100%;
+						  max-height: none;
+						  border-width: 0;
+						  position: fixed;
+						  top: 0;
+						  display: block;
+					  }
+					  
+					  .panel-wrapper {
+						  height: 760px;
+						  right: 0;
+					  }
+					  
+					  .panel-wrapper div {
+						  border-top: 1px solid #ccc;
+						  border-bottom: 1px solid #ccc;
+					  }
+					  
+					  .ui-panel.ui-panel-open {
+						  position:fixed;
+					  }
+					  .ui-panel-inner {
+						  position: absolute;
+						  top: 1px;
+						  left: 0;
+						  right: 0;
+						  bottom: 0px;
+						  overflow: scroll;
+						  -webkit-overflow-scrolling: touch;
+					  }
+					  
+					  .ui-page-active.ui-page-panel {
+						  height: 70%;
+					  }
+					  
+					  .nuova {
+						  font-family: Arial;
+						  font-size: 16px;
+					  }
+					  
+					  .pad-grey {
+						  font-family: Arial, Helvetica, sans-serif;
+						  font-size: 13px;
+						  color:#333;
+						  padding:18px;
+						  width:100%;
+						  text-align: left;
+						  margin:0px 0px 5px 0px;
+						  background: #ffffff; /* Old browsers */
+						  background: -moz-linear-gradient(top,  #ffffff 0%, #dad8d8 100%); /* FF3.6-15 */
+						  background: -webkit-linear-gradient(top,  #ffffff 0%,#dad8d8 100%); /* Chrome10-25,Safari5.1-6 */
+						  background: linear-gradient(to bottom,  #ffffff 0%,#dad8d8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+						  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dad8d8',GradientType=0 ); /* IE6-9 */
+						  /*-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.6);
+						   -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.6);
+						   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.6);*/
+						  -webkit-box-shadow: 0 4px 6px -2px rgba(0,0,0,0.6);
+						  -moz-box-shadow: 0 4px 6px -2px rgba(0,0,0,0.6);
+                          box-shadow: 0 4px 6px -2px rgba(0,0,0,0.6);
+					  }
+					  
+					  .bannerbck {
+						  font-family: Arial, Helvetica, sans-serif;
+						  font-size: 13px;
+						  color:#333;
+						  padding:3px;
+						  width:100%;
+						  text-align: left;
+						  margin:0px 0px 5px 0px;
+						  
+
+					  }
+					  
+					  .linkchat {
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#FFF;
+					  }
+
+
+
+                     </style>
+                      
+                      <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.6exp&sensor=true"></script>-->
+					  
+					  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJOv5sDH5zm_JjcuHEfkhk1DtF6XJVXdE&callback=initMap"
+						  type="text/javascript"></script>
+					  
+					 
+    </head>
+    <body>
+
+        <div id="geolocation"></div>
+		<audio id="successSound" src="/android_asset/www/sound/horn.mp3" type="audio/mpeg" ></audio>
+		<!--<audio id="successArrivo" src="/sound/bell.mp3" type="audio/mpeg" ></audio>-->
+        
+        <div data-role=page id=home class="div2">
+
+            <div id="noconn" align="center" style="display:none"></div>
+            <a data-role=button id=verifica data-theme="b" style="display:none">Verifica Connessione</a>
+			
+			<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div4">
+				
+				<table align="center" width="100%" valign="center" border="0" height="52">
+					<tr>
+						<td align="left" width="30%" valign="center">
+							&nbsp;&nbsp;<a id="#" href"#" rel="external"><img id="#" src="img/logo_bianco.png" height="38px" valign="center"></a>
+						</td>
+						<td align="center" width="40%" valign="center">
+							<table align="center" valign="center"><tr><td align="center" valign="center"><font color="#FFF" size="4"><b><div id="nickhome" align="center" valign="center"></div></b></font></td></tr></table>
+						</td>
+						<td align="right" width="30%" valign="center">
+							<a id="legenda1" href="#" rel="external"><img src="img/ico_help.png" width="38px"></a>&nbsp;<a id="ChiudiXX" href="#" rel="external"><img src="img/ico_exit.png" width="38px"></a>&nbsp;&nbsp;
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<!--<table border="0" valign="center" align="center" class="transbox">
+				<tr>
+                	<td align="left" width="30%">
+                    	&nbsp;&nbsp;<a id="ciccio" href"#" rel="external"><img id="#" src="img/Logo.png" width="65px" valign="center"></a>
+                    </td>
+					<td align="center" width="40%" valign="center">
+                    	<table><tr><td><font color="#cc33cc" size="4"><b><div id="nickhome"></div></b></font></td></tr></table>
+                    </td>
+					<td align="right" width="30%" valign="center">
+                    	<a id="ChiudiXX" href="#" rel="external"><img src="img/ico_close1.png" width="45px"></a>&nbsp;&nbsp;
+                    </td>
+                </tr>
+
+			</table>-->
+			
+			<br>
+			 <div id="tblhome" style="display:none"></div>
+			 
+			 <table id="blobstart" width="100%" border="0" align="center" valign="center" class="div56" style="display:none">
+				 <tr>
+					 <td width="100%" align="right">
+						 <a id="ChiudiXX2" href="#" rel="external"><img src="img/ico_close1.png" width="40px"></a>
+					</td>
+				 </tr>
+				 <tr>
+					 <td width="100%" align="center">
+						 <table align="center" width="100px" height="100%">
+							 <tr>
+								 <td width="100px" align="center" valign="center">
+									 <a id="logout" href="#" data-role="button" data-theme="b" class="custom-btn4blob"><font size="4" color="#fff"><b><div id="hlogout">Log out</div></b></font></a>
+								 </td>
+							 </tr>
+							 
+							 <!--<tr>
+								 <td width="100px" align="center" valign="center">
+									 <a id="exitapp" href="#" data-role="button" data-theme="b" class="custom-btn4"><font size="3" color="#fff"><b>Exit App</b></font></a>
+								 </td>
+							 </tr>-->
+						 </table>
+					 </td>
+				 </tr>
+				 
+				 <a data-role=button id=btn data-theme="b" style="display:none">Display map</a><br>
+				 <a data-role=button id=gps2 data-theme="b" style="display:none">Gps E Dintorni</a><br>
+			 </table>
+
+           
+        </div>
+        
+        <div data-role=page id="win2" data-add-back-btn=true class="div2">
+            <audio id="successChat" src="/android_asset/www/sound/new_chat.mp3" type="audio/mpeg" ></audio>
+			<audio id="successArrivo" src="/android_asset/www/sound/bell.mp3" type="audio/mpeg" ></audio>
+			
+			<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div4">
+				
+				<table align="center" width="100%"  valign="center" border="0" height="52" >
+					<tr>
+						<td align="left" valign="center" width="43px"><a id="tornareset" href="#" style="display:none"><img src="img/sinistra.png" height="42px"></a><a id="XXX" href="#" rel="external"><img src="img/sinistra.png" height="42px"></a></td>
+						<td align="left" valign="center" width="22px">
+						   <div id="led"><img src="img/ledverde.png" width="20px"></div>
+						</td>
+						<td align="right" valign="center" width="100%">
+							<table align="right">
+								<td align="right" valign="center" width="100%"><font color="#fff"><b><div valign="center" id="win2header" class="nuova">Posizione dell'autista</div></b></font></td>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div data-role="content" class="contento"></div>
+			
+			<table id="blob" width="100%" border="0" align="center" valign="center" class="div56" style="display:none">
+				<tr>
+					<td width="100%" align="right">
+						<a id="ChiudiXXblob" href="#" rel="external"><img src="img/ico_close2.png" width="40px"></a>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center">
+						<table align="center" width="100px" height="100%">
+							<tr>
+								<td width="100px" align="center" valign="center">
+									<a id="ric1" href="#" data-role="button" data-theme="b" class="custom-btn4blob"><font size="5" color="#fff"><b>Richiesta<br>in arrivo</b></font></a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<table id="blob5" width="100%" border="0" align="center" valign="center" class="div5622B" style="display:none">
+				<tr>
+					<td width="100%" align="center">
+						<table align="center" width="100px" height="100%">
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<div id="nickblob5"></div>
+								</td>
+							</tr>
+							<tr class="timerviolaB">
+								<td width="100px" align="center" valign="center">
+									<font color="#fff" size="7"><b><div id="timer3"></div></b></font>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<div class="custom-pass2A"><font color="#fff"><b>&nbsp;3&nbsp;</b></font></div>
+								</td>
+							</tr>
+
+							<tr>
+								<td width="140px" align="left" valign="center">
+									<table><tr><td valign="top"><font color="#cc33cc" size="2"><b><div id="blob5da">Da:</div> </b></font></td><td><div id="viaaccetta5"></div></td></tr></table>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="left" valign="center">
+									<table><tr><td valign="top"><font color="#cc33cc" size="2"><b><div id="blob5a">A: </div></b></font></td><td><div id="adaccetta5"></div></td></tr></table>
+								</td>
+							</tr>
+                            <tr>
+								<td width="140px" align="left" valign="center">
+									<table><tr><td><font color="#cc33cc" size="2"><b><div id="prezzo5a">Prezzo: </div></b></font></td><td><div id="importo5"></div></td></tr></table>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<a id="accettatime3" href="#" data-role="button" data-theme="b" class="custom-btn4"><font color="#fff"><b>CONFERMA</b></font></a>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<a id="rifiuta3" href="#" data-role="button" data-theme="b" class="custom-btn4"><font color="#fff"><b>RINUNCIA</b></font></a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+			
+			<table id="blob4" width="100%" border="0" align="center" valign="center" class="div5622A" style="display:none">
+				<tr>
+					<td width="100%" align="center">
+						<table align="center" width="140px" height="100%">
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<div id="nickblob4"></div>
+								</td>
+							</tr>
+							<tr class="timerviolaA">
+								<td width="140px" align="center" valign="center">
+									<font color="#fff" size="7"><b><div id="timer2"></div></b></font>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<div class="custom-pass2A"><font color="#fff"><b>&nbsp;2&nbsp;</b></font></div>
+								</td>
+							</tr>
+
+							<tr>
+								<td width="140px" align="left" valign="center">
+									<table><tr><td valign="top"><font color="#cc33cc" size="2"><b><div id="blob4da">Da:</div> </b></font></td><td><div id="viaaccetta2"></div></td></tr></table>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="left" valign="center">
+									<table><tr><td valign="top"><font color="#cc33cc" size="2"><b><div id="blob4a">A:</div> </b></font></td><td><div id="adaccetta2"></div></td></tr></table>
+								</td>
+							</tr>
+                            <tr>
+								<td width="140px" align="left" valign="center">
+									<table><tr><td><font color="#cc33cc" size="2"><b><div id="prezzo4a">Prezzo: </div></b></font></td><td><div id="importo4"></div></td></tr></table>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<a id="accettatime2" href="#" data-role="button" data-theme="b" class="custom-btn4"><font color="#fff"><b>CONFERMA</b></font></a>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<a id="rifiuta2" href="#" data-role="button" data-theme="b" class="custom-btn4"><font color="#fff"><b>RINUNCIA</b></font></a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+			
+			<table id="blob3" width="100%" border="0" align="center" valign="center" class="div5622" style="display:none">
+				<tr>
+					<td width="100%" align="center">
+						<table align="center" width="140px" height="100%">
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<div id="nickblob3"></div>
+								</td>
+							</tr>
+							<tr class="timerviola">
+								<td width="140px" align="center" valign="center">
+									<font color="#fff" size="7"><b><div id="timer1"></div></b></font>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<div class="custom-pass2A"><font color="#fff"><b>&nbsp;1&nbsp;</b></font></div>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="left" valign="center">
+									<table><tr><td valign="top"><font color="#cc33cc" size="2"><b><div id="blob3da">Da: </div></b></font></td><td><div id="viaaccetta3"></div></td></tr></table>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="left" valign="center">
+									<table><tr><td valign="top"><font color="#cc33cc" size="2"><b><div id="blob3a">A: </div></b></font></td><td><div id="adaccetta3"></div></td></tr></table>
+								</td>
+							</tr>
+                            <tr>
+								<td width="140px" align="left" valign="center">
+									<table><tr><td><font color="#cc33cc" size="2"><b><div id="prezzo3a">Prezzo: </div></b></font></td><td><div id="importo3"></div></td></tr></table>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<a id="accettatime" href="#" data-role="button" data-theme="b" class="custom-btn4"><font color="#fff"><b>CONFERMA</b></font></a>
+								</td>
+							</tr>
+							<tr>
+								<td width="140px" align="center" valign="center">
+									<a id="rifiuta1" href="#" data-role="button" data-theme="b" class="custom-btn4"><font color="#fff"><b>RINUNCIA</b></font></a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			
+			<table id="btninizia" width="100%" border="0" align="center" valign="center" class="div55" >
+				<tr id="modificastart2" style="display:none">
+					<td width="50px" align="center">
+						<a id="ricarica1" href="#" rel="external"><img src="img/ico_mirino.png" width="50px"></a>
+					</td>
+					<td width="95%" align="left">
+						<table align="left" width="95%" ><tr>
+							<td width="95%" align="center">
+							  <input id="modificastart" name="modificastart" type="text" value="" class="scrivo" placeholder="Indirizzo dell'autista" style="display:none">
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<table align="center" width="100px"><tr><td width="100px" align="center">
+						<a id="inizia" href="#" class="button_middle"><font color="#fff"><b>&nbsp;&nbsp;Inizia&nbsp;&nbsp;</b></font></a>
+						</td></tr></table>
+					</td>
+				</tr>
+				
+				
+			</table>
+			
+			<table id="loading" width="100%" border="0" align="center" valign="center" class="div55" style="display:none">
+				<tr>
+					<td width="100%" align="center">
+						<table align="center" width="100px"><tr><td width="100px" align="center">
+							<a data-theme="b" class="custom-btn5" ><font color="#000000">Loading...</font></a>
+						</td></tr></table>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<table id="magia" width="100%" border="0" class="divmagia" style="display:none">
+
+				<tr>
+					<td width="100%" align="left">
+						<table class="pad-grey"><tr><td width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+							<div id="bannermagia" ></div>
+						</td></tr></table>
+					</td>
+				</tr>
+				
+				
+			</table>
+			
+			<table id="bannerp" width="100%" border="0" class="divmagia" style="display:none">
+				
+				<tr>
+					<td width="100%" align="left">
+						<table class="bannerbck">
+							<tr>
+								<td width="100%" border="0" cellspacing="0" cellpadding="0" >
+									<div id="bannerpubblicita" ></div>
+								</td>
+							</tr>
+							<tr>
+								<td width="100%" align="right" valign="center">
+									<img id="chiudibanner" src="img/ico_close1.png" width="20px">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<!--Iconcoine-->
+			
+			<table id="btnpass" width="100%" border="0" align="center" valign="center" class="div555" style="display:none">
+				<tr>
+					<td width="65px" align="right" valign="top">
+						<a id="ricarica" href="#" rel="external"><img src="img/ico_mirino.png" width="58px"></a>
+					</td>
+					<td width="5px" align="right" valign="center">&nbsp;
+						
+					</td>
+					<td width="160px" align="left" valign="center">
+						<table align="left" border="0" width="100%" valign="center">
+							<tr>
+								<td align="left" valign="center">
+									<div id="pass0" style="display:none" valign="center">
+										<table border="0" width="100%" align="center" valign="center" class="bannertbl1"><tr><td align="center" valign="center">&nbsp;<br></td></tr></table>
+										<table border="0" width="100%" align="center" valign="center" class="bannertbl2">
+											<tr>
+												<td align="center" valign="center">&nbsp;<font size="4" color="#fff"><div id="s_partenza" valign="center"><b>In attesa di richieste</b><br></div></font><br>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<a id="pass1" href="#" style="display:none"><img id="pass1img" src="img/1_verde.png" width="50px"></a>&nbsp;<a id="pass2" href="#" style="display:none"><img id="pass2img" src="img/2_verde.png" width="50px"></a>&nbsp;<a id="pass3" href="#" style="display:none"><img id="pass3img" src="img/3_verde.png" width="50px"></a>
+								</td>
+								<!--<td align="right" valign="center">
+									<a id="puntina" href="#" data-theme="b" style="display:none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/ico_verde_post.png" width="45px" ></a>&nbsp;&nbsp;
+								</td>-->
+							</tr>
+							
+						</table>
+					</td>
+					<td width="5px" align="right">&nbsp;
+						
+					</td>
+					<td width="65px" align="left" valign="center">
+						<a id="lista" href="#" style="display:none"><img id="#" src="img/ico_verde_post.png" width="50px"></a>
+						<!--<a id="puntina" href="#" data-theme="b" style="display:none"><img src="img/ico_verde_post.png" width="50px" ></a>-->
+					</td>
+					
+				</tr>
+				
+			</table>
+			
+			<a href="#mypanelH2" data-role=button id=btnpanel2 data-theme="b" style="display:none"></a>
+			
+			<div data-role="panel" id="mypanelH2" style="overflow-y: scroll" data-position="right" data-display="overlay" width="100%" data-theme="b">
+				<center>
+					
+					<table border="0" width="100%" align="center">
+						<tr>
+							<td align="center" width="25%">
+								<img src="img/ico_chat2.png" width="40">
+							</td>
+							<td align="center" width="50%">
+								<table class="tabella1"><tr><td><font color="#FFF"><div id="nickhome6"></div></font></td></tr></table>
+							</td>
+							<td align="center" width="25%">
+								<a id="chiudichat" href="#" data-rel="close"><img src="img/ico_close1.png" width="40"></a>
+							</td>
+							
+						</tr>
+					</table>
+					
+					<div class="spinner" id="spinner6"></div>
+					
+					<form name="formia6" action="entra.asp" method="post">
+						<table id="spazioipad" height="30px" class="divchat"><tr><td></td></tr></table>
+						
+						<table id="tblchat" width="90%" align="center" class="tabellaA">
+							<tr>
+								<td width="100%" align="center" >
+									<textarea id="chattext" cols="30" rows="2" class="scrivo" placeholder="Scrivi messaggio"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td width="100%" align="center">
+									<a id="back6" href="#" data-role="button" data-theme="b" class="custom-btn33">Invia messaggio</a>
+								</td>
+							</tr>
+							
+							<tr>
+								<td width="100%" align="center" >
+									<div id="offerta6" ></div>
+								</td>
+							</tr>
+							
+						</table>
+						
+					</form>
+			</div>
+			
+			
+		</div>
+		
+		<div data-role=page id=home3 class="div2">
+			
+			<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div44">
+				
+				<table align="center" width="100%" valign="center" border="0" height="52">
+					<tr>
+						<td align="left" valign="center" width="25%"><a id="XX3" href="#" rel="external"><img src="img/sinistra.png" height="42px"></a></td>
+						<td align="center" valign="center" width="50%">
+							<table align="center">
+								<tr><td align="center" height="30"><b><font color="#FFF"><div class="button_small" id="nickhome3"></div></font></b></td></tr>
+								<tr><td align="center" height="30"><div id="stelle3"></div></td></tr>
+							</table>
+						</td>
+						<td align="right" valign="center" width="20%"><div id="3img" valign="center"></div></td>
+						<td align="right" valign="center" width="5%">&nbsp;&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div id="wrapper">
+				<div class="iScroller">
+
+
+			<div class="spinner" id="spinner3"></div>
+			
+			<table border="0" hight="100px"><tr><td><br><br></td></tr></table>
+			
+			<form name="formia" action="entra.asp" method="post">
+			
+			<table width="90%" align="center" class="tabella">
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<font size="4" color="#cc33cc"><b><div id="h3rispondi">Rispondi</div></b></font><br><br>
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" align="left" >
+						<table ><tr><td><font color="#000"><div id="h3minuti">In quanti minuti?</div></font></td></tr></table>
+					</td>
+
+					<td width="50%" align="center" >
+
+				     <select id="tempooff" name="tempooff" data-theme="f">
+					
+					<option value="03" selected>03</option>
+					<option value="05" >05</option>
+					<option value="10" >10</option>
+					<option value="15" >15</option>
+					<option value="20" >20</option>
+					<option value="25" >25</option>
+					<option value="30" >30</option>
+					<option value="45" >45</option>
+					<option value="60" >60</option>
+					<option value="70" >Oltre 60</option>
+					
+				    </select>&nbsp;
+			   </td>
+			 </tr>
+			
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<a id="gratis" href="#" class="button_middle">&nbsp;&nbsp;Gratis&nbsp;&nbsp;</a><br><br>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<a id="offerta" href="#"  class="button_middle">&nbsp;&nbsp;Offerta libera&nbsp;&nbsp;</a><br>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<br><div id="h3oppure">Oppure</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="left" colspan="2">
+						<table ><tr><td><font color="#000"><div id="h3importo3">Importo</div></font></td></tr></table>
+					</td>
+				</tr>
+				<td width="100%" align="center" colspan="2">
+					<textarea id="soldini" name="soldini" cols="30" rows="10" class="scrivo" placeholder=""></textarea>
+				</td>
+				
+
+				<tr>
+					<td width="100%" align="left" colspan="2">
+						<table ><tr><td><font color="#000"><div id="h3note">Note</div></font></td></tr></table>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<textarea id="noteautista" name="noteautista" cols="30" rows="10" class="scrivo" placeholder=""></textarea><br><br>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<br><br>
+					</td>
+				</tr>
+			</table>
+			
+			<br><br><br><br><br> <br>  &nbsp;&nbsp;<br> &nbsp;&nbsp;<br>&nbsp;&nbsp;<br> <br>&nbsp;&nbsp;<br>&nbsp;&nbsp;<br> &nbsp;&nbsp;<br>&nbsp;&nbsp;<br> <br>&nbsp;&nbsp;<br>
+			
+			</form>
+			
+			</div>
+				</div>
+			
+			<table id="zoccolo" width="100%" border="0" align="center" valign="center" class="div59" >
+				<tr>
+					<td algn="center" width="100%" align="center" valign="center">
+						
+					</td>
+				</tr>
+			</table>
+			
+			<table width="98%" border="0" align="center" valign="center" class="div599" >
+				<tr>
+					<td width="100%" align="center" valign="center">
+						<a id="back33" href="#" class="button_middle">Invia offerta</a>
+					</td>
+
+				</tr>
+			</table>
+		
+				
+		</div>
+		
+		<div data-role=page id=home4 class="div2">
+			
+			<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div44">
+				
+				<table align="center" width="100%" valign="center" border="0" height="52">
+					<tr>
+						<td align="left" valign="center" width="25%"><a id="ritorna" href="#"><img src="img/sinistra.png" height="42"></a></td>
+						<td align="center" valign="center" width="50%">
+							<table align="center">
+								<tr><td align="center" height="30"><b><font color="#FFF"><div class="button_small" id="nickhome4"></div></font></b></td></tr>
+								<tr><td align="center" height="30"><div id="stelle4"></div></td></tr>
+							</table>
+						</td>
+						<td align="right" valign="center" width="20%"><div id="4img" valign="center"></div></td>
+						<td align="right" valign="center" width="5%">&nbsp;&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div id="wrapper2">
+				<div class="iScroller">
+			
+			<table border="0" hight="70px"><tr><td></td></tr></table>
+
+			
+			<table width="100%" align="center">
+				<tr>
+					<td width="100%" align="left" colspan="3">
+						<table width="90%" align="center" class="tabella">
+							<tr>
+								<td width="250px" align="center" valign="center">
+									<font size="4" color="#cc33cc"><b><div id="pagina4richiesta">Richiesta</div></b></font><br>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<table border="0" hight="20px"><tr><td></td></tr></table>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="quando"></p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="Da"></p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="Ad"></p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="distanza"></p>
+								</td>
+							</tr>
+							<tr>
+								<td width="100%" align="left" >
+									<b><font color='#cc33cc'><div id="pagina4opzioni">Opzioni</div></font></b>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="passeggeri">Passeggeri: No</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="fumatori">Fumatori:  No</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="animali">Animali:  No</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="meno18">Meno 18 anni:  No</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="disabili">Disabili:  No</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="bambini">Bambini:  No</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="wifi">WiFi:  No</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="portapacchi">Note:  --</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="rimorchio">Note:  --</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="bluetooth">Note:  --</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<p id="note">Note:  --</p>
+								</td>
+							</tr>
+							
+							<tr>
+								<td width="250px" align="left" valign="center">
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<div id="code1" style="display:none"></div><div id="code2" style="display:none"></div><div id="code3" style="display:none"></div>
+								</td>
+							</tr>
+							
+							<tr>
+								<td width="250px" align="left" valign="center">
+									<table border="0" hight="60px"><tr><td></td></tr></table>
+								    <br><br><br><br><br><br><br>
+								</td>
+							</tr>
+
+						</table>
+					</td>
+				</tr>
+
+			</table>
+			
+				</div>
+			</div>
+			
+			<table id="zoccolo" width="100%" border="0" align="center" valign="center" class="div59" >
+				<tr>
+					<td algn="center" width="100%" align="center" valign="center">
+						
+					</td>
+				</tr>
+			</table>
+			
+			<table width="98%" border="0" align="center" valign="center" class="div599" >
+				<tr>
+					<td width="40%" align="center" valign="center">
+						<a id="risp1" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Rispondi</font></a>
+						<a id="risp2" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Rispondi</font></a>
+						<a id="risp3" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Rispondi</font></a>
+						
+						<a id="gps1" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Percorso</font></a>
+						<a id="gps22" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Percorso</font></a>
+						<a id="gps3" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Percorso</font></a>
+					</td>
+					
+					<td width="15%" align="center" valign="center">
+						<a id="cell1" style="display:none"><img src="img/ico_telephone.png" width="45"></a>
+						<a id="cell2" style="display:none"><img src="img/ico_telephone.png" width="45"></a>
+						<a id="cell3" style="display:none"><img src="img/ico_telephone.png" width="45"></a>
+					</td>
+					
+					<td width="15%" align="center" valign="center">
+						<a id="chat1" style="display:none"><font color="#fff"><img src="img/chat.png" width="45"></font></a>
+						<a id="chat2" style="display:none"><font color="#fff"><img src="img/chat.png" width="45"></font></a>
+						<a id="chat3" style="display:none"><font color="#fff"><img src="img/chat.png" width="45"></font></a>
+					</td>
+					
+					<td width="15%" align="center" valign="center">
+						<a id="xchiudi1" href="#" style="display:none"><img src="img/ico_to_map.png" width="45"></a>
+						<a id="xchiudi2" href="#" style="display:none"><img src="img/ico_to_map.png" width="45"></a>
+						<a id="xchiudi3" href="#" style="display:none"><img src="img/ico_to_map.png" width="45"></a>
+					</td>
+
+					<td width="15%" align="center" valign="center">
+						<a id="close1" style="display:none"><img src="img/ico_trash.png" width="45"></a>
+						<a id="close2" style="display:none"><img src="img/ico_trash.png" width="45"></a>
+						<a id="close3" style="display:none"><img src="img/ico_trash.png" width="45"></a>
+						
+						<a id="nascondi1" style="display:none"><img src="img/ico_trash.png" width="45"></a>
+						<a id="nascondi2" style="display:none"><img src="img/ico_trash.png" width="45"></a>
+						<a id="nascondi3" style="display:none"><img src="img/ico_trash.png" width="45"></a>
+						
+						<a id="feedo1" style="display:none"><img src="img/ico_feedback.png" width="45"></a>
+						<a id="feedo2" style="display:none"><img src="img/ico_feedback.png" width="45"></a>
+						<a id="feedo3" style="display:none"><img src="img/ico_feedback.png" width="45"></a>
+					</td>
+				</tr>
+			</table>
+			
+			
+			
+			<a href="#mypanelH" data-role=button id=btnpanel data-theme="b" style="display:none"></a>
+			
+			<div data-role="panel" id="mypanelH" style="overflow-y: scroll" data-position="right" data-display="overlay" width="100%" data-theme="b">
+				<center>
+					<audio id="successChat1" src="/android_asset/www/sound/send_chat.mp3" type="audio/mpeg" ></audio>
+					<audio id="successChat2" src="/android_asset/www/sound/new_chat.mp3" type="audio/mpeg" ></audio>
+					
+					<table border="0" width="100%" align="center">
+						<tr>
+							<td align="center" width="25%">
+								<img src="img/ico_chat2.png" width="40">
+							</td>
+							<td align="center" width="50%">
+								<table class="tabella1"><tr><td><font color="#FFF"><div id="nickhome66"></div></font></td></tr></table>
+							</td>
+							<td align="center" width="25%">
+								<a id="#" href="#" data-rel="close"><img src="img/ico_close1.png" width="40"></a>
+							</td>
+							
+						</tr>
+					</table>
+					
+					<div class="spinner" id="spinner4"></div>
+					
+					<form name="formia66" action="entra.asp" method="post">
+						<table id="spazioipad" height="30px" class="divchat"><tr><td></td></tr></table>
+						
+						<table id="tblchat" width="90%" align="center" class="tabellaA">
+							<tr>
+								<td width="100%" align="center" >
+									<textarea id="chattext66" cols="30" rows="2" class="scrivo" placeholder="Scrivi messaggio"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td width="100%" align="center">
+									<a id="back66" href="#" data-role="button" data-theme="b" class="custom-btn33">Invia messaggio</a>
+								</td>
+							</tr>
+							
+							<tr>
+								<td width="100%" align="center" >
+									<div id="offerta66" ></div>
+								</td>
+							</tr>
+							
+						</table>
+
+					</form>
+					</div>
+			
+		</div>
+		
+		<div data-role=page id=home5 class="div2">
+			<div data-role="header" data-theme="c" data-position="fixed" data-tap-toggle="false" class="div4">
+				
+				<table align="center" width="100%"  valign="center" border="0" height="52" >
+					<tr>
+						<td align="left" valign="center" width="43px"><a id="ritorna5" href="#"><img src="img/sinistra.png" height="42px"></a></td>
+						<td align="left" valign="center" width="22px">
+							<div id="led5"><img src="img/ledverde.png" width="20px"></div>
+						</td>
+						<td align="right" valign="center" width="100%">
+							<table align="right">
+								<td align="right" valign="center" width="100%"><font color="#fff"><b><div valign="center" id="win2header" class="nuova">Richieste posticipate&nbsp;&nbsp;</div></b></font></td>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+            <div id="wrapper5">
+				<div class="iScroller">
+            
+			<table border="0" hight="10px"><tr><td></td></tr></table>
+			
+				
+			<div id="offerte5" ></div>
+            
+            	</div>
+            </div>
+			
+			<a href="#mypanelH5" data-role=button id=btnpanel3 data-theme="b" style="display:none"></a>
+			
+			<div data-role="panel" id="mypanelH5" style="overflow-y: scroll" data-position="right" data-display="overlay" width="100%" data-theme="b">
+				<center>
+					
+					<table border="0" width="100%" align="center">
+						<tr>
+							<td align="center" width="25%">
+								<img src="img/ico_chat2.png" width="40">
+									</td>
+							<td align="center" width="50%">
+								<table class="tabella1"><tr><td><font color="#FFF"><div id="nickhome5"></div></font></td></tr></table>
+							</td>
+							<td align="center" width="25%">
+								<a id="chiudichat5" href="#" data-rel="close"><img src="img/ico_close1.png" width="40"></a>
+							</td>
+							
+						</tr>
+					</table>
+					
+					<div class="spinner" id="spinner5"></div>
+					
+					<form name="formia7" action="entra.asp" method="post">
+						<table id="spazioipad" height="30px" class="divchat"><tr><td></td></tr></table>
+						
+						<table id="tblchat" width="90%" align="center" class="tabellaA">
+							<tr>
+								<td width="100%" align="center" >
+									<textarea id="chattext5" cols="30" rows="2" class="scrivo" placeholder="Scrivi messaggio"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td width="100%" align="center">
+									<a id="back65" href="#" data-role="button" data-theme="b" class="custom-btn33">Invia messaggio</a>
+								</td>
+							</tr>
+							
+							<tr>
+								<td width="100%" align="center" >
+									<div id="offerta65" ></div>
+								</td>
+							</tr>
+							
+						</table>
+						
+					</form>
+					</div>
+
+		</div>
+		
+		
+		<div data-role=page id=home6 class="divchat">
+			<!--<audio id="successChat1" src="sound/send_chat.mp3" type="audio/mpeg" ></audio>
+			<audio id="successChat2" src="sound/new_chat.mp3" type="audio/mpeg" ></audio>
+			
+			<table border="0" width="100%" align="center" class="transbox4A">
+				<tr>
+					<td align="center" width="25%">
+						<div id="4img"><img src="img/ico_chat2.png" width="40"></div>
+					</td>
+					<td align="center" width="50%">
+						<table class="tabella1"><tr><td><font color="#FFF"><div id="nickhome6"></div></font></td></tr></table>
+					</td>
+					<td align="center" width="25%">
+						<a id="indietro6" href="#"><img src="img/ico_close1.png" width="40"></a>
+					</td>
+				</tr>
+			</table>
+			
+			<div class="spinner" id="spinner6"></div>
+			
+			<form name="formia6" action="entra.asp" method="post">
+				<table id="spazioipad" height="30px" class="divchat"><tr><td></td></tr></table>
+				<br><br>
+				<table id="tblchat" width="90%" align="center" style="display:none" class="tabellaA">
+				<tr>
+					<td width="100%" align="center" >
+						<textarea id="chattext" cols="30" rows="4" class="scrivo" placeholder="Scrivi messaggio"></textarea>
+					</td>
+				</tr>
+
+				
+				
+				<tr>
+					<td width="100%" align="center" >
+						<div id="offerta6" ></div>
+					</td>
+				</tr>
+				
+				</table>
+				
+				<table id="zoccolo" width="100%" border="0" align="center" valign="center" class="div59" >
+					<tr>
+						<td algn="center" width="100%" align="center" valign="center">
+							
+						</td>
+					</tr>
+				</table>
+				
+				<table width="100%" border="0" align="center" valign="center" class="div599" >
+					<tr>
+						<td width="100%" align="center" valign="center">
+							<a id="back6" href="#" data-role="button" data-theme="b" class="custom-btn33">Invia messaggio</a>
+						</td>
+					</tr>
+				</table>
+
+			</form>-->
+		</div>
+		
+
+		<script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+
+		<script type='application/javascript' src='js/fastclick.js'></script>
+		
+		<script type="text/javascript">
+			app.initialize();
+		</script>
+		
+
+    </body>
+</html>
